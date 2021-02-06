@@ -5,13 +5,11 @@ namespace App\Controller;
 use App\Model\UserModel;
 
 class UserController {
-  /*
-  вывборка авторизованного пользователя
-  */
-  public function showAuth()
-  {
-    $user = UserModel::showAuth();
+    // TODO доделать номарльную авторизацию
+    public function auth()
+    {
+        $user = UserModel::showAuth();
 
-    echo "USER - " . $user->login . " с ID " . $user->id;
-  }
+        echo "USER - " . $user->login . " с ID " . $user->id;
+    }
 }

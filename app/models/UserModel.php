@@ -5,29 +5,30 @@ namespace App\Model;
 use App\Handler\Model;
 
 class UserModel extends Model {
-  private $table = "users"; // таблица с которой будем работать
+    private $table = "users";
 
-  /*
-    статический метод для возврата якобы
-    авторизованного пользователя
-  */
-  static function showAuth()
-  {
-    $user = new UserModel();
-    $query = $user->authQuery();
+    //TODO сделать нормальную авторизацию
+    /**
+     * @return mixed
+     */
+    static function showAuth()
+    {
+        $user = new UserModel();
+        $query = $user->authQuery();
 
-    $result = $user->first($query);
+        $result = $user->first($query);
 
-    return $result;
-  }
+        return $result;
+    }
 
-  /*
-    sql запрос для выборки авторизованного пользователя
-  */
-  public function authQuery()
-  {
-    $sql = "SELECT * FROM " . $this->table;
+    //TODO сделать нормальную авторизацию
+    /**
+     * @return string
+     */
+    public function authQuery()
+    {
+        $sql = "SELECT * FROM " . $this->table;
 
-    return $sql;
-  }
+        return $sql;
+    }
 }

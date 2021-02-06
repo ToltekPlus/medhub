@@ -5,47 +5,64 @@ namespace App\Model;
 use App\Handler\Model;
 
 class AccountModel extends Model {
-  private $table = 'accounts';
+    private $table = 'accounts';
 
-  /*
-  показываем аккаунты
+    /**
+     *   показываем аккаунты
+     *   второй параметр при вызове all - связуемые параметры при составлении запроса
+     *   ключ table - связываемая таблицы
+     *   ключ foreign_key - связываемый ключ таблицы модели
+     *
+     * @return array
+     */
+    static function showAll()
+    {
+        $account = new AccountModel();
 
-  второй параметр при вызове all - связуемые параметры
-  при составлении запроса
-  ключ table - связываемая таблицы
-  ключ foreign_key - связываемый ключ таблицы модели
-  */
-  static function index()
-  {
-    $account = new AccountModel();
+        $pivot_table = [
+          [
+            'table' => 'users',
+            'foreign_key' => 'user_id'
+          ],
+          [
+            'table' => 'accesses',
+            'foreign_key' => 'access_id'
+          ],
+        ];
 
-    $pivot_table = [
-      [
-        'table' => 'users',
-        'foreign_key' => 'user_id'
-      ],
-      [
-        'table' => 'accesses',
-        'foreign_key' => 'access_id'
-      ],
-    ];
+        return $account->all($account->query(), $pivot_table, '', 'account_key');
+    }
 
-    return $account->all($account->query(), $pivot_table, '', 'account_key');
-  }
+    /**
+     * поиск по id
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getById($id)
+    {
+        return $this->findById($this->table, $id);
+    }
 
-  /*
-  поиск по id в модели
-  */
-  public function find($id)
-  {
-    return $this->findById($this->table, $id);
-  }
+    /**
+     * удаление по id
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function deleteById($id)
+    {
+        // TODO исправить правильно удаление (исходя из структуры БД)
+        return $this->deleteFromTable($this->table, $id);
+    }
 
-  /*
-  подготавливаем запрос
-  */
-  public function query()
-  {
-    return $this->table;
-  }
+    /**
+     * возвращаем таблицу для статичного метода
+     *
+     * @return string
+     */
+    public function query()
+    {
+        return $this->table;
+    }
 }

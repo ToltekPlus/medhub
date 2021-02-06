@@ -4,7 +4,7 @@ use Route\Router;
 
 $router = new Router();
 $router->add('', ['controller' => 'AccountController', 'action' => 'show']);
-$router->add('account?{id}', ['controller' => 'AccountController', 'action' => 'showAccount']);
-//$router->add('account', ['controller' => 'AccountController', 'action' => 'showAccount']); // тоже самое
+$router->add('account?{id}', ['controller' => 'AccountController', 'action' => 'getById']);
+$router->add('account/delete?{id}', ['controller' => 'AccountController', 'action' => 'deleteById']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);

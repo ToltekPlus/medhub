@@ -11,9 +11,9 @@ class ComposerStaticInit0e99a3f108cd5d7e437d151df551774d
         array (
             'Route\\' => 6,
         ),
-        'D' => 
+        'C' => 
         array (
-            'DB\\' => 3,
+            'Core\\' => 5,
         ),
         'A' => 
         array (
@@ -28,7 +28,7 @@ class ComposerStaticInit0e99a3f108cd5d7e437d151df551774d
         array (
             0 => __DIR__ . '/../..' . '/route',
         ),
-        'DB\\' => 
+        'Core\\' => 
         array (
             0 => __DIR__ . '/../..' . '/config',
         ),
