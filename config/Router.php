@@ -1,6 +1,6 @@
 <?php
 
-namespace Route;
+namespace Core;
 
 class Router {
     /**

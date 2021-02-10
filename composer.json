@@ -4,8 +4,7 @@
       "App\\Controller\\": "app/controllers/",
       "App\\Model\\": "app/models/",
       "App\\Handler\\": "app/classes/",
-      "Core\\": "config/",
-      "Route\\": "route/"
+      "Core\\": "config/"
     }
   }
 }

@@ -9,20 +9,14 @@ use Core\View;
 class AccountController implements ControllerInterface {
     /**
      * Вывод аккаунтов
+     *
+     * @throws \Exception
      */
     public function show()
     {
         $accounts = AccountModel::showAll();
 
-        foreach ($accounts as $key => $value) {
-          echo 'Email: ' . $value->email . '<br>' .
-          'Имя/Фамилия: ' . $value->name . ' ' . $value->surname . '<br>' .
-          'Уровень доступа: ' . $value->name_access . ' с уровнем ' . $value->level_access . '<br>' .
-          'Пользовательский ID:
-              <a href=account?id=' . $value->account_key .'>' . $value->account_key . '</a><br>
-              <a href=account/delete?id=' . $value->account_key .'>Удалить аккаунт</a>              
-              <br><hr/><br>';
-        }
+        View::render('index.php', ['accounts' => $accounts]);
     }
 
     /**
@@ -36,16 +30,21 @@ class AccountController implements ControllerInterface {
         $account = new AccountModel();
         $result = $account->getById($id);
 
-        View::render('show_account.php', ['account' => $result]);
+        View::render('pages/accounts/show.php', ['account' => $result]);
     }
 
+    /**
+     * удаление по id
+     *
+     * @throws \Exception
+     */
     public function deleteById()
     {
         $id =  $_GET['id'];
         $account = new AccountModel();
         $account->deleteById($id);
 
-        View::render('delete_result.php', ['back_url' => '/']);
+        View::render('crud_result/delete_result.php', ['back_url' => '/']);
     }
 
     public function update()

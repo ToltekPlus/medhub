@@ -1,6 +1,6 @@
 <?php
 
-use Route\Router;
+use Core\Router;
 
 $router = new Router();
 $router->add('', ['controller' => 'AccountController', 'action' => 'show']);

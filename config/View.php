@@ -4,6 +4,26 @@ namespace Core;
 
 class View {
     /**
+     * рендерим хедер
+     */
+    public static function renderHeader()
+    {
+        $layout = dirname(__DIR__) . "/app/Views/layouts/header.php";
+
+        require $layout;
+    }
+
+    /**
+     *  рендерим футер
+     */
+    public static function renderFooter()
+    {
+        $layout = dirname(__DIR__) . "/app/Views/layouts/footer.php";
+
+        require $layout;
+    }
+
+    /**
      * Рендеринг страницы для вывода
      *
      * @param $view
