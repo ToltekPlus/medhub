@@ -57,6 +57,15 @@ class AccountModel extends Model {
     }
 
     /**
+     * @param $id
+     * @param $args
+     */
+    public function update($id, $args)
+    {
+        return $this->updateForTable($this->table, $id, $args);
+    }
+
+    /**
      * возвращаем таблицу для статичного метода
      *
      * @return string

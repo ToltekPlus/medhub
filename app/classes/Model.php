@@ -140,4 +140,51 @@ abstract class Model {
 
         return true;
     }
+
+    /**
+     * Обновляем данные для одной таблицы
+     *
+     * @param $table
+     * @param $id
+     * @param $args
+     */
+    public function updateForTable($table, $id, $args)
+    {
+        $fields = [];
+
+        foreach ($args as $key => $value) {
+            $fields[$key] = $value;
+        }
+
+        $sql = $this->structureQueryForUpdate($id, $table, $fields);
+
+        $this->db->execute($sql, $fields);
+    }
+
+    /**
+     * Составляем запрос для обновленя
+     *
+     * @param $id
+     * @param $table
+     * @param $fields
+     * @return string
+     */
+    //TODO проверить правильность обновления
+    public function structureQueryForUpdate($id, $table, $fields)
+    {
+        $set = ' SET ';
+        $last_key = end(array_keys($fields));
+
+        foreach ($fields as $key => $value) {
+            if ($key == $last_key) {
+                $set .= $key . ' = :' . $key;
+            }else {
+                $set .= $key . '= :' . $key . ', ';
+            }
+        }
+
+        $sql = 'UPDATE ' . $table . $set . ' WHERE id=' . $id;
+
+        return $sql;
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\AccountModel;
 use Core\ControllerInterface;
 use Core\View;
+use function Couchbase\defaultDecoder;
 
 class AccountController implements ControllerInterface {
     /**
@@ -34,6 +35,20 @@ class AccountController implements ControllerInterface {
     }
 
     /**
+     * Форма для редактирования аккаунта
+     *
+     * @throws \Exception
+     */
+    public function edit()
+    {
+        $id = $id = $_GET['id'];
+        $account = new AccountModel();
+        $result = $account->getById($id);
+
+        View::render('pages/accounts/edit.php', ['account' => $result]);
+    }
+
+    /**
      * удаление по id
      *
      * @throws \Exception
@@ -47,8 +62,22 @@ class AccountController implements ControllerInterface {
         View::render('crud_result/delete_result.php', ['back_url' => '/']);
     }
 
+    /**
+     * Обновление в таблице по id
+     *
+     * @throws \Exception
+     */
     public function update()
     {
-        // TODO: Implement update() method.
+        $id = $_POST['id'];
+        $args = [
+            'name' => $_POST['name'],
+            'surname' => $_POST['surname']
+        ];
+
+        $account = new AccountModel();
+        $account->update($id, $args);
+
+        View::render('crud_result/update_result.php', ['back_url' => '/']);
     }
 }

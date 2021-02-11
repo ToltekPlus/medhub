@@ -9,6 +9,7 @@ foreach ($accounts as $key => $value) {
         'Пользовательский ID:
               <a href=account?id=' . $value->account_key .'>' . $value->account_key . '</a><br>
               <a href=account/delete?id=' . $value->account_key .'>Удалить аккаунт</a>              
+              <a href=account/edit?id=' . $value->account_key .'>Редактировать аккаунт</a>              
               <br><hr/><br>';
 }
 ?>
