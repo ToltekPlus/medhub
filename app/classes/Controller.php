@@ -15,7 +15,7 @@ class Controller
     public function uploadImage($image, $img_path)
     {
         //Проверяем тип файла через MIME
-        $type = getimagesize($image['tmp_name']);
+        if (empty($image['tmp_name'])) return false; else $type = getimagesize($image['tmp_name']);
 
         //Создаем имя файла и его расширение
         $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
@@ -39,5 +39,14 @@ class Controller
             else echo 'Файл большого объема'.'<br>';
         }
         else exit('Тип файла не подходит'.'<br>');
+    }
+
+    /**
+     * уничтажаем все сессии
+     */
+    public function logout()
+    {
+        session_destroy();
+        header('Location: /');
     }
 }
