@@ -31,4 +31,9 @@ class UserModel extends Model {
 
         return $sql;
     }
+
+    public function deleteById($id)
+    {
+      return $this->deleteFromTable($this->table, $id);
+    }
 }
