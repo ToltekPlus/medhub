@@ -5,6 +5,8 @@ namespace App\Handler;
 class Controller
 {
     // TODO проверить валидацию юзерпиков - если у аккаунта уже есть эзерпик, то удалить его из каталога
+    // TODO найти ошибку
+    // TODO нормально разделить на методы
     /**
      * Загрузка изображений
      *
@@ -14,14 +16,10 @@ class Controller
      */
     public function uploadImage($image, $img_path)
     {
-        //Проверяем тип файла через MIME
-        if (empty($image['tmp_name'])) return false; else $type = getimagesize($image['tmp_name']);
+        $this->checkImage($image);
 
-        //Создаем имя файла и его расширение
-        $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
-        $name  = time() . '_' . mt_rand(27, 9999999999);
-        $src   = $img_path . $name . '.' . $extension;
-
+        $this->createImage($image, $img_path);
+        
         //Если тип равен чему то из списка сравнения, то гоу дальше
         if($type && ($type['mime'] == 'image/png' || $type['mime'] == 'image/jpg' || $type['mime'] == 'image/jpeg')){
             //Проверяем размер файла
@@ -39,6 +37,20 @@ class Controller
             else echo 'Файл большого объема'.'<br>';
         }
         else exit('Тип файла не подходит'.'<br>');
+    }
+
+    public function checkImage($image)
+    {
+      //Проверяем тип файла через MIME
+      if (empty($image['tmp_name'])) return false; else $type = getimagesize($image['tmp_name']);
+    }
+
+    public function createImage($image, $img_path)
+    {
+      //Создаем имя файла и его расширение
+      $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+      $name = time() . '_' . mt_rand(27, 9999999999);
+      $src = $img_path . $name . '.' . $extension;
     }
 
     /**
