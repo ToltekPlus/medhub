@@ -43,14 +43,19 @@ class Controller
 
     public function checkImage($image)
     {
-      //Проверяем отсутствие расширения
-      if (pathinfo($image['name'], PATHINFO_EXTENSION) == '')
-      {
-          $image['name'] .= "1." . str_replace("image/", "", getimagesize($image['tmp_name'])['mime']);
-          return getimagesize($image['tmp_name']);
-      }
-      //Проверяем тип файла через MIME
-      if (empty($image['tmp_name'])) return false; else return getimagesize($image['tmp_name']);
+        //Проверяем наличие файла
+        if (empty($image['tmp_name'])) exit('Файл не выбран');
+        else
+        {
+            //Проверяем отсутствие расширения
+            if (pathinfo($image['name'], PATHINFO_EXTENSION) == '')
+            {
+                $image['name'] .= "1." . str_replace("image/", "", getimagesize($image['tmp_name'])['mime']);
+                return getimagesize($image['tmp_name']);
+            }
+            //Возвращаем тип MIME
+            return getimagesize($image['tmp_name']);
+        }
     }
 
     public function createImage($image, $img_path)
