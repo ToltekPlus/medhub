@@ -40,13 +40,18 @@ class Controller
     public function checkImage($image)
     {
       //Проверяем тип файла через MIME
-      if (empty($image['tmp_name']) || pathinfo($image['name'], PATHINFO_EXTENSION) == '') return false; else return getimagesize($image['tmp_name']);
+      if (pathinfo($image['name'], PATHINFO_EXTENSION) == '')
+      {
+          $image['name'] .= "1." . str_replace("image/", "", getimagesize($image['tmp_name'])['mime']);
+          return getimagesize($image['tmp_name']);
+      }
+      if (empty($image['tmp_name'])) return false; else return getimagesize($image['tmp_name']);
     }
 
     public function createImage($image, $img_path)
     {
       //Создаем имя файла и его расширение
-      $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+      $extension = str_replace("image/", "", getimagesize($image['tmp_name'])['mime']);
       $name = time() . '_' . mt_rand(27, 9999999999);
       return $img_path . $name . '.' . $extension;
     }
