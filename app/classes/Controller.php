@@ -4,7 +4,6 @@ namespace App\Handler;
 
 class Controller
 {
-    // TODO найти ошибку
     /**
      * Загрузка изображений
      *
@@ -22,29 +21,35 @@ class Controller
         if($type && ($type['mime'] == 'image/png' || $type['mime'] == 'image/jpg' || $type['mime'] == 'image/jpeg')){
             //Проверяем размер файла
             if($image['size'] < 1000000 * 1024){
-                //Если каталога для загрузки нет - создаем, если есть - то загружаем файл.
-                if(file_exists($img_path)){
-                    if(move_uploaded_file($image['tmp_name'], $src)) return $src; else echo 'Ошибка при загрузке';
+                //Проверяем разрешение файла
+                if(getimagesize($image['tmp_name'])[0] > 50 || getimagesize($image['tmp_name'])[1] > 50)
+                {
+                    //Если каталога для загрузки нет - создаем, если есть - то загружаем файл.
+                    if(file_exists($img_path)){
+                        if(move_uploaded_file($image['tmp_name'], $src)) return $src; else echo 'Ошибка при загрузке';
+                    }
+                    else {
+                        mkdir($img_path);
+                        //Перемещаем
+                        if(move_uploaded_file($image['tmp_name'], $src)) return $src; else echo 'Ошибка при загрузке';
+                    }
                 }
-                else {
-                    mkdir($img_path);
-                    //Перемещаем
-                    if(move_uploaded_file($image['tmp_name'], $src)) return $src; else echo 'Ошибка при загрузке';
-                }
+               else exit('Файл маленького размера'.'<br>');
             }
-            else echo 'Файл большого объема'.'<br>';
+            else exit('Файл большого объема'.'<br>');
         }
         else exit('Тип файла не подходит'.'<br>');
     }
 
     public function checkImage($image)
     {
-      //Проверяем тип файла через MIME
+      //Проверяем отсутствие расширения
       if (pathinfo($image['name'], PATHINFO_EXTENSION) == '')
       {
           $image['name'] .= "1." . str_replace("image/", "", getimagesize($image['tmp_name'])['mime']);
           return getimagesize($image['tmp_name']);
       }
+      //Проверяем тип файла через MIME
       if (empty($image['tmp_name'])) return false; else return getimagesize($image['tmp_name']);
     }
 

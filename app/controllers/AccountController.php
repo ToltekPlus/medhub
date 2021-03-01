@@ -84,9 +84,9 @@ class AccountController extends Controller implements ControllerInterface {
         $account = new AccountModel();
 
         $old_userpic = $account->getById($id)['userpic'];
-        $this->deleteImage($old_userpic);
 
         $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
+        if ($userpic != NONE) $this->deleteImage($old_userpic); else $userpic = $old_userpic;
 
         $args = [
             'name' => $_POST['name'],
