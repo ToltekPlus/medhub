@@ -40,7 +40,12 @@ class Controller
         }
         else exit('Тип файла не подходит'.'<br>');
     }
-
+   /**
+    *Проверяем валидность изображения
+    *
+    *@param $image
+    *@return mixed
+    */
     public function checkImage($image)
     {
         //Проверяем наличие файла
@@ -50,7 +55,7 @@ class Controller
             //Проверяем отсутствие расширения
             if (pathinfo($image['name'], PATHINFO_EXTENSION) == '')
             {
-                $image['name'] .= "1." . str_replace("image/", "", getimagesize($image['tmp_name'])['mime']);
+                $image['name'] .= "27." . str_replace("image/", "", getimagesize($image['tmp_name'])['mime']);
                 return getimagesize($image['tmp_name']);
             }
             //Возвращаем тип MIME
@@ -58,6 +63,13 @@ class Controller
         }
     }
 
+    /**
+     *Проверяем валидность изображения
+     *
+     *@param $image
+     *@param $img_path
+     *@return string
+     */
     public function createImage($image, $img_path)
     {
       //Создаем имя файла и его расширение
@@ -65,7 +77,11 @@ class Controller
       $name = time() . '_' . mt_rand(27, 9999999999);
       return $img_path . $name . '.' . $extension;
     }
-
+    /**
+     *Проверяем валидность изображения
+     *
+     *@param $path
+     */
     public function deleteImage($path)
     {
       //Удаляем картинку

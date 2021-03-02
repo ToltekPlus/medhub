@@ -81,12 +81,7 @@ class AccountController extends Controller implements ControllerInterface {
     {
         $id = $_POST['id'];
 
-        $account = new AccountModel();
-
-        $old_userpic = $account->getById($id)['userpic'];
-
-        $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
-        if ($userpic != NONE) $this->deleteImage($old_userpic); else $userpic = $old_userpic;
+        $userpic = $this->checkOldImage($id);
 
         $args = [
             'name' => $_POST['name'],
@@ -94,8 +89,20 @@ class AccountController extends Controller implements ControllerInterface {
             'userpic' => $userpic
         ];
 
+        $account = new AccountModel();
         $account->update($id, $args);
 
         View::render('crud_result/update_result.php', ['back_url' => '/']);
+    }
+
+    public function checkOldImage($id)
+    {
+      $account = new AccountModel();
+      $old_userpic = $account->getById($id)['userpic'];
+
+      $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
+      if ($userpic != NONE) $this->deleteImage($old_userpic); else $userpic = $old_userpic;
+
+      return $userpic;
     }
 }
