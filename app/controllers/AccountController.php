@@ -94,7 +94,11 @@ class AccountController extends Controller implements ControllerInterface {
 
         View::render('crud_result/update_result.php', ['back_url' => '/']);
     }
-
+    /**
+     * Проверка старого userpic
+     *
+     * @return string
+     */
     public function checkOldImage($id)
     {
       $account = new AccountModel();
