@@ -97,6 +97,7 @@ class AccountController extends Controller implements ControllerInterface {
     /**
      * Проверка старого userpic
      *
+     * @param $id
      * @return string
      */
     public function checkOldImage($id)
