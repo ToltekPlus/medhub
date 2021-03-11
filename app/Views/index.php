@@ -3,8 +3,8 @@
 <?php
 
 foreach ($accounts as $key => $value) {
-    echo '<img src='. $value->userpic .' style="width:50px;"> <br>' .
-        'Email: ' . $value->email . '<br>' .
+	if($value->userpic)echo '<img src='. $value->userpic .' style="width:50px;"> <br>'; 
+    echo 'Email: ' . $value->email . '<br>' .
         'Имя/Фамилия: ' . $value->name . ' ' . $value->surname . '<br>' .
         'Уровень доступа: ' . $value->name_access . ' с уровнем ' . $value->level_access . '<br>' .
         'Пользовательский ID:
