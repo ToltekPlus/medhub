@@ -80,15 +80,27 @@ class AccountController extends Controller implements ControllerInterface {
     {
         $id = $_POST['id'];
 
-        $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
+        $args = [
+            'name' => $_POST['name'],
+            'surname' => $_POST['surname'],
+        ];
+
+        if (isset($_FILES['userpic']))
+            $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
+            $args['userpic'] =  $userpic;
+
 
         $args = [
             'name' => $_POST['name'],
             'surname' => $_POST['surname'],
-            'userpic' => $userpic
+            'userpic' => $userpic 
         ];
 
         $account = new AccountModel();
+
+        if (strlen($account->getById($id)['userpic']) > 0) //если в базе есть старая картинка, удалить ее
+            $this->deleteImage($account->getById($id)['userpic']);
+
         $account->update($id, $args);
 
         View::render('crud_result/update_result.php', ['back_url' => '/']);

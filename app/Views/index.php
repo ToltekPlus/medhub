@@ -22,7 +22,6 @@
                         <fieldset>
                             <label for="email">E-mail</label>
                             <input type="text" placeholder="Ваш e-mail" id="email" name="email">
-
                             <label for="password">Пароль</label>
                             <input type="password" placeholder="Ваш пароль" id="password" name="password">
 
@@ -34,4 +33,3 @@
         </div>
     </body>
 </html>
-
