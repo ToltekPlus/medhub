@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;600;900&display=swap');
+
+/*
+--------------------------------------------------------------------------
+Стили глобального описания
+--------------------------------------------------------------------------
+*/
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+}
+nav {
+    margin: 15px 0;
+}
+nav ul {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 0.75em;
+    font-weight: 300;
+    list-style: none;
+}
+
+/*
+--------------------------------------------------------------------------
+Стили для авторизации/регистрации
+--------------------------------------------------------------------------
+*/
+.main-auth {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-color: #ffffff;
+}
+.block-bg-image {
+    width: 50%;
+    height: 100vh;
+    background-image: url("../images/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    flex-grow: 1;
+    display: block;
+}
+.block-auth-form {
+    width: 50%;
+    position: relative;
+    display: flex;
+    height: 100vh;
+    box-shadow: 2px 0 4px 0 rgb(0 0 0 / 60%);
+    flex-shrink: 0;
+    flex-grow: 0;
+    align-items: center;
+    justify-content: center;
+}
+.form-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+    margin: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    color: black;
+}
+.invite {
+    margin: 0;
+    font-size: 0.75em;
+    text-transform: none;
+    letter-spacing: 0;
+}
+.auth {
+    margin: 15px 0;
+}
+.auth label {
+    font-size: 0.6em;
+    font-weight: 100;
+}
+.auth input {
+    border: 1px solid darkgray;
+    font-size: 0.6em;
+}
+.auth input[type="submit"] {
+    background-color: #e1e1fd;
+    border: 1px solid #d9d9f5;
+    color: rgba(0, 0, 0, 0.51);
+}
+
+
+
+/*
+--------------------------------------------------------------------------
+Стили для использования в аккаунте
+--------------------------------------------------------------------------
+*/
+.main {
+    width: 100%;
+    position: relative;
+    display: flex;
+    height: 100vh;
+}
+.block-left {
+    width: 120px;
+    background-color: #e2e2fd;
+    padding: 15px;
+    text-align: center;
+    font-size: 0.75em;
+}
+.block-right {
+    width: calc(100% - 120px);
+    padding: 8px 55px;
+    box-shadow: 2px 0 4px 0 rgb(0 0 0 / 60%);
+}
+.account {
+    margin: 8px 0;
+    padding: 15px;
+    background-color: #d4d4ee;
+    border-radius: 5px;
+}
+.account img {
+    width: 100%;
+    text-align: center;
+    border-radius: 50%;
+}
+.account-info {
+    margin: 8px 0 0 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75em;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+}
+.account-level {
+    margin: 5px 0 0 0;
+    font-weight: 300;
+}
+
+
+/*
+--------------------------------------------------------------------------
+Стили для использования формами
+--------------------------------------------------------------------------
+*/
+.dashboard {
+    margin: 8px 0;
+}
+.dashboard-form {
+    max-width: 70%;
+    background-color: white;
+    box-shadow: 2px 0 8px 0 rgb(0 0 0 / 10%);
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 0.75em;
+}
+.dashboard-form td, th {
+    border-bottom: 0.1rem solid #606c76;
+}
+.add-link {
+    margin: 15px 0 25px 0;
+    font-size: 0.65em;
+}
+.form-control_edit {
+    width: 24px;
+}
+.button-primary,
+.btn-delete {
+    background-color: #e1e1fd;
+    border: 1px solid #d9d9f5;
+    color: rgba(0, 0, 0, 0.51);
+}
+.btn-delete {
+    background-color: darkred;
+    color: white;
+    border: 1px solid #760d0a;
+}
+
+
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+
+
+
+
+/*
+--------------------------------------------------------------------------
+Тестируемые стили для примера
+--------------------------------------------------------------------------
+
+
+nav ul {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.75em;
+    list-style: none;
+}
+nav ul {
+    margin: 25px 0;
+    padding: 0;
+}
+nav ul li {
+    display: flex;
+    align-items: center;
+}
+nav ul li a {
+    color: black;
+}
+nav ul li a:hover {
+    text-decoration: none;
+    color: darkred;
+}
+nav ul li img {
+    width: 16px;
+    margin-right: 8px;
+}
+
+.form {
+    font-size: 0.75em;
+}
+.form a {
+    color: gray;
+    font-size: 0.65em;
+}
+.form a:hover {
+    text-decoration: none;
+}
+
+.access-item,
+.account-information {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid gray;
+    font-size: 0.75em;
+    line-height: 1.5;
+}
+.access-item:last-child {
+    border: none;
+}
+
+.form-operation {
+    display: flex;
+    margin-bottom: 8px;
+}
+.form-operation img {
+    width: 12px;
+    margin-right: 8px;
+}
+
+.account-information {
+    display: flex;
+    flex-direction: row;
+}
+.account-information_userpic {
+    margin-right: 15px;
+}
+.account-information_userpic img {
+    width: 50px;
+}
+
+.notification .notice {
+    background-color: yellow;
+    padding: 5px 15px;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+*/
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

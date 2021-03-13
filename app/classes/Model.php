@@ -150,15 +150,9 @@ abstract class Model {
      */
     public function updateForTable($table, $id, $args)
     {
-        $fields = [];
+        $sql = $this->structureQueryForUpdate($id, $table, $args);
 
-        foreach ($args as $key => $value) {
-            $fields[$key] = $value;
-        }
-
-        $sql = $this->structureQueryForUpdate($id, $table, $fields);
-
-        $this->db->execute($sql, $fields);
+        $this->db->execute($sql, $args);
     }
 
     /**
@@ -184,6 +178,48 @@ abstract class Model {
         }
 
         $sql = 'UPDATE ' . $table . $set . ' WHERE id=' . $id;
+
+        return $sql;
+    }
+
+    /**
+     * Добавляем данные в одну таблицу
+     *
+     * @param $table
+     * @param $args
+     */
+    public function storeToTable($table, $args)
+    {
+        $sql = $this->structureQueryForStore($table, $args);
+
+        $this->db->execute($sql, $args);
+    }
+
+    /**
+     * Составляем запрос для добавления в одну таблицу
+     *
+     * @param $table
+     * @param $fields
+     * @return string
+     */
+    public function structureQueryForStore($table, $fields)
+    {
+        $set = '';
+        $values = '';
+
+        $last_key = end(array_keys($fields));
+
+        foreach ($fields as $key => $value) {
+            if ($key == $last_key) {
+                $values .= ':' . $key;
+                $set .= $key;
+            }else {
+                $values .= ':' . $key . ',';
+                $set .= $key . ',';
+            }
+        }
+
+        $sql = 'INSERT INTO ' . $table . " (" .$set . ") VALUES (" . $values . ")";
 
         return $sql;
     }

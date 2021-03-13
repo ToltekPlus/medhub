@@ -1,19 +1,35 @@
-<?php \Core\View::renderHeader(); ?>
+<html>
+    <head>
+        <title>Вход в систему «Врачеватель»</title>
+        <!-- CSS Reset -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <!-- Milligram CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+        <!-- My CSS -->
+        <link rel="stylesheet" href="<? echo "/styles/main.css";?>">
+    </head>
+    <body>
+        <div class="main-auth">
+            <div class="block-bg-image"></div>
+            <div class="block-auth-form">
+                <div class="form-control">
+                    <h3>Добро пожаловать <br> к «Врачевателю»</h3>
+                    <div class="invite">
+                        Войдите в аккаунт или <a href="/register">зарегистрируйтесь</a>
+                    </div>
 
-<?php
+                    <form action="/home" class="auth">
+                        <fieldset>
+                            <label for="email">E-mail</label>
+                            <input type="text" placeholder="Ваш e-mail" id="email" name="email">
+                            <label for="password">Пароль</label>
+                            <input type="password" placeholder="Ваш пароль" id="password" name="password">
 
-foreach ($accounts as $key => $value) {
-	if($value->userpic)echo '<img src='. $value->userpic .' style="width:50px;"> <br>'; 
-    echo 'Email: ' . $value->email . '<br>' .
-        'Имя/Фамилия: ' . $value->name . ' ' . $value->surname . '<br>' .
-        'Уровень доступа: ' . $value->name_access . ' с уровнем ' . $value->level_access . '<br>' .
-        'Пользовательский ID:
-              <a href=account?id=' . $value->account_key .'>' . $value->account_key . '</a><br>
-              <a href=account/delete?id=' . $value->account_key .'>Удалить аккаунт</a>              
-              <a href=account/edit?id=' . $value->account_key .'>Редактировать аккаунт</a>              
-              <a href=account/login?id=' . $value->account_key .'>Передать сессию аккаунта</a>              
-              <br><hr/><br>';
-}
-?>
-
-<?php \Core\View::renderFooter(); ?>
+                            <input class="button-primary" type="submit" value="Войти">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
