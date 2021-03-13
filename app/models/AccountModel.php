@@ -52,7 +52,6 @@ class AccountModel extends Model {
      */
     public function deleteById($id)
     {
-        // TODO исправить правильно удаление (исходя из структуры БД)
         return $this->deleteFromTable($this->table, $id);
     }
 

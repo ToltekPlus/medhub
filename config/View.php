@@ -9,8 +9,12 @@ class View {
     public static function renderHeader()
     {
         $layout = dirname(__DIR__) . "/app/Views/layouts/header.php";
+        $template = dirname(__DIR__) . "/app/Views/layouts/template.php";
+        $sprite = dirname(__DIR__) . "/app/Views/layouts/svg_sprite.php";
 
         require $layout;
+        require $template;
+        require $sprite;
     }
 
     /**

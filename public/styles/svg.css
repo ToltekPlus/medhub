@@ -1,0 +1,23 @@
+.svg-access {
+    fill: #555563;
+    width: 24px;
+    height: 24px;
+}
+.svg-access:hover {
+    fill: black;
+    cursor: pointer;
+}
+
+.svg-edit {
+    width: 16px;
+    height: 16px;
+}
+
+.svg-delete {
+    fill: darkred;
+    width: 24px;
+    height: 24px;
+}
+.svg-delete:hover {
+    fill: black;
+}

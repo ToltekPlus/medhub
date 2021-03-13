@@ -45,7 +45,7 @@ class AccountController extends Controller implements ControllerInterface {
      */
     public function edit()
     {
-        $id = $id = $_GET['id'];
+        $id = $_GET['id'];
         $account = new AccountModel();
         $result = $account->getById($id);
 
@@ -67,7 +67,6 @@ class AccountController extends Controller implements ControllerInterface {
 
         $user = new UserModel();
         $user->deleteById($user_id);
-
 
         View::render('crud_result/delete_result.php', ['back_url' => '/']);
     }
