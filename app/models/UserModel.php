@@ -11,10 +11,10 @@ class UserModel extends Model {
     /**
      * @return mixed
      */
-    static function showAuth()
+    static function showAuth($email)
     {
         $user = new UserModel();
-        $query = $user->authQuery();
+        $query = $user->authQuery($email);
 
         $result = $user->first($query);
 
@@ -25,9 +25,9 @@ class UserModel extends Model {
     /**
      * @return string
      */
-    public function authQuery()
+    public function authQuery($email)
     {
-        $sql = "SELECT * FROM " . $this->table;
+        $sql = "SELECT id, password FROM " . $this->table . " WHERE login=" . $email;
 
         return $sql;
     }

@@ -9,9 +9,12 @@ class UserController extends Controller {
     // TODO доделать номарльную авторизацию
     public function auth()
     {
-        $user = UserModel::showAuth();
+        $email = $_POST('email');
 
-        echo "USER - " . $user->login . " с ID " . $user->id;
+        $user = UserModel::showAuth($email);
+        $id = $user['id'];
+        $password = $user['password'];
+
     }
 
     /**
