@@ -6,14 +6,22 @@ use App\Handler\Controller;
 use App\Model\UserModel;
 
 class UserController extends Controller {
-    // TODO доделать номарльную авторизацию
+    /**
+     * Авторизация(проверка пароля)
+     */
     public function auth()
     {
-        $email = $_POST('email');
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $result = false;
 
         $user = UserModel::showAuth($email);
-        $id = $user['id'];
-        $password = $user['password'];
+        if($password == $user->password)
+        {
+            $this->newSession($user->id);
+            $result = true;
+        }
+        return $result;
 
     }
 
@@ -25,6 +33,16 @@ class UserController extends Controller {
     {
         $_SESSION['sid'] = $_GET['id'];
         header('Location: /');
+    }
+
+    /**
+     * Создание новой Сессии
+     *
+     * @param $id
+     */
+    public function newSession($id)
+    {
+        $_SESSION['sid'] = $id;
     }
 
     /**

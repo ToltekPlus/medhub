@@ -18,7 +18,7 @@
                         Войдите в аккаунт или <a href="/register">зарегистрируйтесь</a>
                     </div>
 
-                    <form action="/home" class="auth">
+                    <form action="/home" class="auth" method="post">
                         <fieldset>
                             <label for="email">E-mail</label>
                             <input type="text" placeholder="Ваш e-mail" id="email" name="email">

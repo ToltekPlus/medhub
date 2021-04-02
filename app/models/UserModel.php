@@ -7,8 +7,8 @@ use App\Handler\Model;
 class UserModel extends Model {
     private $table = "users";
 
-    //TODO сделать нормальную авторизацию
     /**
+     * @param $email
      * @return mixed
      */
     static function showAuth($email)
@@ -21,13 +21,13 @@ class UserModel extends Model {
         return $result;
     }
 
-    //TODO сделать нормальную авторизацию
     /**
+     * @param $email
      * @return string
      */
     public function authQuery($email)
     {
-        $sql = "SELECT id, password FROM " . $this->table . " WHERE login=" . $email;
+        $sql = "SELECT * FROM " . $this->table . " WHERE login='" . $email . "'";
 
         return $sql;
     }
