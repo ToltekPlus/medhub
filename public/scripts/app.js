@@ -87,8 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .catch((err) => console.error(err))
 
-                if(operation[0]['redirect'])
+                if(operation[0]['redirect']){
                 	location = operation[0]['redirect'];
+                }
 
         });
     });
