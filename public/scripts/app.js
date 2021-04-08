@@ -31,16 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             'page': 'add',
             'action': 'store',
+            'redirect': '',
             'message': 'Данные добавлены'
         },
         {
             'page': 'edit',
             'action': 'update',
+            'redirect': '',
             'message': 'Данные обновлены'
         },
         {
             'page': 'warning',
             'action': 'delete',
+            'redirect': '../accesses',
             'message': 'Данные удалены'
         }
     ];
@@ -83,6 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     form.reset(); // очищаем поля формы
                 })
                 .catch((err) => console.error(err))
+
+                if(operation[0]['redirect'])
+                	location = operation[0]['redirect'];
+
         });
     });
 });
