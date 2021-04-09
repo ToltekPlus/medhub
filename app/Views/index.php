@@ -17,19 +17,20 @@
                     <div class="invite">
                         Войдите в аккаунт или <a href="/register">зарегистрируйтесь</a>
                     </div>
-
-                    <form action="/home" class="auth">
+                    <form class="auth" id='form'>
                         <fieldset>
                             <label for="email">E-mail</label>
                             <input type="text" placeholder="Ваш e-mail" id="email" name="email">
                             <label for="password">Пароль</label>
                             <input type="password" placeholder="Ваш пароль" id="password" name="password">
-
-                            <input class="button-primary" type="submit" value="Войти">
+                            <div id="erdiv">
+                            <input class="button-primary" type="button" value="Войти" onclick="allCheck()" id="btn">
+                          </div>
                         </fieldset>
                     </form>
                 </div>
             </div>
         </div>
+      <script src="/scripts/login.js"></script>
     </body>
 </html>
