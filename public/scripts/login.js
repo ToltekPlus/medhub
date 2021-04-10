@@ -1,6 +1,6 @@
 //создание div уведомления
 function showError({top = 0, right = 0, className, html, color}) {
-    let error = document.createElement('span');
+    let error = document.createElement('div');
     error.className = "error";
     if (className) error.classList.add(className);
 
@@ -17,36 +17,53 @@ function showError({top = 0, right = 0, className, html, color}) {
     error.style.animationName = 'bounceIn';
     error.style.animationDuration = '600ms';
     error.style.animationIterationCount = '1';
-    error.style.width = '100';
 
     error.innerHTML = html;
 
     erdiv.append(error);
 
-    document.getElementById('btn').style.display = 'none';
+    document.getElementById('login-btn').style.display = 'none';
     setTimeout(() => {error.remove()}, 2000);
-    setTimeout(() => {document.getElementById('btn').style.display = 'block';}, 2000);
+    setTimeout(() => {document.getElementById('login-btn').style.display = 'block';}, 2000);
 
 }
 
-
-//проверка почты
-function checkEmail(){
+//проверка логин-почты
+function checkLogEmail(){
   var email = document.getElementById("email").value;
-      var check = /\S+@\S+\.\S+/;
-      return check.test(email);
+  var check = /\S+@\S+\.\S+/;
+  return check.test(email);
 }
 
-//проверка пароля
-function checkPass(){
+//проверка  логин-пароля
+function checkLogPass(){
   var pass = document.getElementById("password").value
   if(pass.trim().length<8){return false;}else{return true;}
 }
 
-//общая фунция
-function allCheck(){
-  if(checkEmail()==true){
-    if(checkPass()==true){
+//проверка рег-почты
+function checkRegEmail(){
+  var email = document.getElementById("new-email").value;
+  var check = /\S+@\S+\.\S+/;
+  return check.test(email);
+}
+
+//проверка рег-пароля
+function checkRegPass(){
+  var pass = document.getElementById("new-password").value
+  if(pass.trim().length<8){return false;}else{return true;}
+}
+
+//проверка рег-имени
+function checkRegName(){
+  var name = document.getElementById("new-name").value
+  if(name.trim().length<10){return false;}else{return true;}
+}
+
+//логин функция
+function loginCheck(){
+  if(checkLogEmail()==true){
+    if(checkLogPass()==true){
       //при true true
       showError({
           html: 'All good!',
@@ -69,6 +86,25 @@ function allCheck(){
   });}
 }
 
+function registerCheck(){
+  if(checkRegEmail()==false){showError({
+      html: 'This is not email!',
+      color: '#c93434',
+  });}
+  if(checkRegName()==false){showError({
+    html: 'Name too long!',
+    color: '#c93434',
+});}
+  if(checkRegPass()==false){showError({
+  html: 'Password too short',
+  color: '#c93434',
+});}
+if(checkRegPass()&&checkRegName()&&checkRegEmail()==true){
+  showError({
+      html: 'All good!',
+      color: '#33e019',
+  });
 
-// выключение кнопки
-document.getElementsByName("button-primary")[0].disabled = false;
+  location.href = '/home';
+}
+}
