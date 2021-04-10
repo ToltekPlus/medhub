@@ -12,7 +12,7 @@ class UserController extends Controller {
     public function auth()
     {
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']);
         $result = false;
 
         $user = UserModel::showAuth($email);
@@ -23,6 +23,26 @@ class UserController extends Controller {
         }
         return $result;
 
+    }
+
+    /**
+     * Регистрация нового юзера
+     * @return mixed
+     */
+    static function registration()
+    {
+        $date = date('Y-m-d H:i:s');
+        $args = [
+            'login' => $_POST['login'],
+            'password' => md5($_POST['password']),
+            'created_at' => $date,
+            'updated_at' => $date
+        ];
+
+        $user = new UserModel();
+        $user->store($args);
+
+        return $user->getLastId();
     }
 
     /**

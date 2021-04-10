@@ -33,6 +33,15 @@ class UserModel extends Model {
     }
 
     /**
+     * @param $args
+     * @return mixed
+     */
+    public function store($args)
+    {
+        return $this->storeToTable($this->table, $args);
+    }
+
+    /**
      * @param $id
      * @return bool
      */
