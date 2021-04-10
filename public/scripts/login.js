@@ -57,7 +57,7 @@ function checkRegPass(){
 //проверка рег-имени
 function checkRegName(){
   var name = document.getElementById("new-name").value
-  if(name.trim().length<10){return false;}else{return true;}
+  if(name.trim().length>15){return false;}else{return true;}
 }
 
 //логин функция
