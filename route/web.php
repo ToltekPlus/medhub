@@ -50,6 +50,11 @@ $router->add('access/warning?{id}', ['controller' => 'AccessController', 'action
 $router->add('access/delete?{id}', ['controller' => 'AccessController', 'action' => 'delete']);
 
 
+$router->add('directions_category', ['controller' => 'DirectionsCategoryController', 'action' => 'index']);
+$router->add('directions_category/add', ['controller' => 'DirectionsCategoryController', 'action' => 'show']);
+$router->add('directions_category/store', ['controller' => 'DirectionsCategoryController', 'action' => 'store']);
+
+
 
 
 // линк для примера. Использоваться не будет

@@ -220,7 +220,7 @@ abstract class Model {
         }
 
         $sql = 'INSERT INTO ' . $table . " (" .$set . ") VALUES (" . $values . ")";
-
+        var_dump($sql);
         return $sql;
     }
 }
