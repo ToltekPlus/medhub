@@ -33,16 +33,19 @@ class UserController extends Controller {
     {
         $date = date('Y-m-d H:i:s');
         $args = [
-            'login' => $_POST['login'],
-            'password' => md5($_POST['password']),
+            'login' => $_POST['new-email'],
+            'password' => md5($_POST['new-password']),
             'created_at' => $date,
             'updated_at' => $date
         ];
 
         $user = new UserModel();
-        $user->store($args);
-
-        return $user->getLastId();
+        if($user->authQuery($_POST['new-email']) != NONE)
+        {
+            $user->store($args);
+            return $user->getLastId();
+        }
+        else{return false;}
     }
 
     /**

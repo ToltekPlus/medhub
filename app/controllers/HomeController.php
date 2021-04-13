@@ -9,12 +9,15 @@ class HomeController
 {
     public function __construct()
     {
+        $result = false;
+
         if ($_POST['email'])
         {
             $user = new UserController();
             $result = $user->auth();
         }
-        if (!$_SESSION['sid'] or (!$result and $_POST['email'])) {header("Location: /");}
+
+        return $result;
     }
 
     public function index()

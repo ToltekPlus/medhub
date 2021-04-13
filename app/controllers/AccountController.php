@@ -116,20 +116,24 @@ class AccountController extends Controller implements ControllerInterface {
         $user = new UserController();
         $user_id = $user->registration();
 
-        $args = [
-            'user_id' => $user_id,
-            'access_id' => '1',
-            'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
-            'created_at' => $date,
-            'updated_at' => $date
-        ];
+        if ($user_id != false)
+        {
+            $args = [
+                'user_id' => $user_id,
+                'access_id' => '1',
+                'name' => $_POST['new-name'],
+                'created_at' => $date,
+                'updated_at' => $date
+            ];
 
-        $account = new AccountModel();
-        $account->store($args);
+            $account = new AccountModel();
+            $account->store($args);
 
-        $user->newSession($user_id);
+            $user->newSession($user_id);
 
-        header('Location: /home');
+            return true;
+        }
+
+        else{return false;}
     }
 }
