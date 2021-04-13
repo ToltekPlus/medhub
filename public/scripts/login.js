@@ -66,7 +66,7 @@ function loginCheck(){
     if(checkLogPass()==true){
       //при true true
       showError({
-          html: 'All good!',
+          html: 'Входим!',
           color: '#33e019',
       });
 
@@ -75,33 +75,33 @@ function loginCheck(){
     }else{
       //при true false
       showError({
-        html: 'Wrong password!',
+        html: 'Неправильный пароль!',
         color: '#c93434',
     });}
   }else{
     //при false false
     showError({
-      html: 'Wrong email!',
+      html: 'Неправильный email!',
       color: '#c93434',
   });}
 }
 
 function registerCheck(){
   if(checkRegEmail()==false){showError({
-      html: 'This is not email!',
+      html: 'Это не email!',
       color: '#c93434',
   });}
   if(checkRegName()==false){showError({
-    html: 'Name too long!',
+    html: 'Имя слишком длинное!',
     color: '#c93434',
 });}
   if(checkRegPass()==false){showError({
-  html: 'Password too short',
+  html: 'Пароль слишком короткий!',
   color: '#c93434',
 });}
 if(checkRegPass()&&checkRegName()&&checkRegEmail()==true){
   showError({
-      html: 'All good!',
+      html: 'Входим!',
       color: '#33e019',
   });
 
