@@ -46,53 +46,56 @@ class DirectionsCategoryController extends Controller
         //View::render('crud_result/store_result.php', ['back_url' => '/']);
     }
 
-//     /**
-//      * @throws \Exception
-//      */
-//     public function edit()
-//     {
-//         $id = $_GET['id'];
-//         $access = new AccessModel();
-//         $result = $access->getById($id);
+    /**
+     * @throws \Exception
+     */
+    public function edit()
+    {
+        $id = $_GET['id'];
 
-//         View::render('pages/accesses/edit.php', ['access' => $result]);
-//     }
+        $model = new DirectionsCategoryModel();
+        $result = $model->getById($id);
 
-//     *
-//      * @throws \Exception
+        View::render('pages/directions_category/edit.php', ['directions_category' => $result]);
+    }
+
+    // *
+    //  * @throws \Exception
      
-//     public function update()
-//     {
-//         $id = $_POST['id'];
+    public function update()
+    {
+        $id = $_POST['id'];
 
-//         $args = [
-//             'name_access' => $_POST['name_access'],
-//             'level_access' => $_POST['level_access']
-//         ];
+        $args = [
+            'category_id' => $_POST['category_id'],
+            'name_direction' => $_POST['name_direction'],
+            'price' => $_POST['price'],
+            'updated_at' => date('Y-m-d H:i:s', time())
+        ];
 
-//         $account = new AccessModel();
-//         $account->update($id, $args);
+        $model = new DirectionsCategoryModel();
+        $model->update($id, $args);
 
-//         //View::render('crud_result/update_result.php', ['back_url' => '/']);
-//     }
+        //View::render('crud_result/update_result.php', ['back_url' => '/']);
+    }
 
-//     /**
-//      * @throws \Exception
-//      */
-//     public function warning()
-//     {
-//         $id = $_GET['id'];
+    /**
+     * @throws \Exception
+     */
+    public function warning()
+    {
+        $id = $_GET['id'];
 
-//         View::render('pages/accesses/warning.php', ['id' => $id]);
-//     }
+        View::render('pages/accesses/warning.php', ['id' => $id]);
+    }
 
-//     public function delete()
-//     {
-//         $id =  $_POST['id'];
+    public function delete()
+    {
+        $id =  $_POST['id'];
 
-//         $access = new AccessModel();
-//         $access->delete($id);
+        $model = new DirectionsCategoryModel();
+        $model->delete($id);
 
-//         //View::render('crud_result/delete_result.php', ['back_url' => '/accesses']);
-//     }
+        //View::render('crud_result/delete_result.php', ['back_url' => '/accesses']);
+    }
 }

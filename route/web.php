@@ -57,7 +57,11 @@ $router->add('access/delete?{id}', ['controller' => 'AccessController', 'action'
 $router->add('directions_category', ['controller' => 'DirectionsCategoryController', 'action' => 'index']);
 $router->add('directions_category/add', ['controller' => 'DirectionsCategoryController', 'action' => 'show']);
 $router->add('directions_category/store', ['controller' => 'DirectionsCategoryController', 'action' => 'store']);
+$router->add('directions_category/editedit?{id}', ['controller' => 'DirectionsCategoryController', 'action' => 'edit']);
+$router->add('directions_category/update', ['controller' => 'DirectionsCategoryController', 'action' => 'update']);
 
+$router->add('directions_category/warning?{id}', ['controller' => 'DirectionsCategoryController', 'action' => 'warning']);
+$router->add('directions_category/delete?{id}', ['controller' => 'DirectionsCategoryController', 'action' => 'delete']);
 
 
 

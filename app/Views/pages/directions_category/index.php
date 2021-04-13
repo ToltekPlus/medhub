@@ -1,10 +1,10 @@
 <?php \Core\View::renderHeader(); ?>
 
 <div class="block-right">
-    <h1>directions_category</h1>
+    <h1>Направление категории</h1>
 
     <div class="add-link">
-        <a href='directions_category/add'>directions_category add</a>
+        <a href='directions_category/add'>Добавить направление категории</a>
     </div>
 
     <div class="dashboard-form">
@@ -12,12 +12,12 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>category_id</th>
-                    <th>name_direction</th>
-                    <th>price</th>
-                    <th>created_at</th>
-                    <th>updated_at</th>
-                                        <th></th>
+                    <th>Категория</th>
+                    <th>Направление</th>
+                    <th>Цена</th>
+                    <th>Добавлено</th>
+                    <th>Изменено</th>
+                    <th></th>
                 </tr>
                 <?php
                     foreach ($directions_category as $key => $value) {
