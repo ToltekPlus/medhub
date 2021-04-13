@@ -3,12 +3,21 @@
 namespace App\Controller;
 
 use Core\View;
+use App\Controller\UserController;
 
 class HomeController
 {
     public function __construct()
     {
-        //if (!$_SESSION['uid']) {View::render('index.php');}
+        $result = false;
+
+        if ($_POST['email'])
+        {
+            $user = new UserController();
+            $result = $user->auth();
+        }
+
+        return $result;
     }
 
     public function index()
