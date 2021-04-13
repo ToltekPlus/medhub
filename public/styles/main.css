@@ -71,18 +71,22 @@ nav ul {
     text-transform: none;
     letter-spacing: 0;
 }
-.auth {
+.auth,
+.reg {
     margin: 15px 0;
 }
-.auth label {
+.auth label,
+.reg label {
     font-size: 0.6em;
     font-weight: 100;
 }
-.auth input {
+.auth input,
+.reg input {
     border: 1px solid darkgray;
     font-size: 0.6em;
 }
-.auth input[type="submit"] {
+.auth input[type="submit"],
+.reg input[type="submit"] {
     background-color: #e1e1fd;
     border: 1px solid #d9d9f5;
     color: rgba(0, 0, 0, 0.51);
@@ -187,7 +191,9 @@ h3 {
     font-weight: 600;
 }
 
-
+.none{
+  display:none !important;
+}
 
 
 
