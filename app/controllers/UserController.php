@@ -6,12 +6,43 @@ use App\Handler\Controller;
 use App\Model\UserModel;
 
 class UserController extends Controller {
-    // TODO доделать номарльную авторизацию
+    /**
+     * Авторизация(проверка пароля)
+     */
     public function auth()
     {
-        $user = UserModel::showAuth();
+        $email = $_POST['email'];
+        $password = md5($_POST['password']);
+        $result = false;
 
-        echo "USER - " . $user->login . " с ID " . $user->id;
+        $user = UserModel::showAuth($email);
+        if($password == $user->password)
+        {
+            $this->newSession($user->id);
+            $result = true;
+        }
+        return $result;
+
+    }
+
+    /**
+     * Регистрация нового юзера
+     * @return mixed
+     */
+    static function registration()
+    {
+        $date = date('Y-m-d H:i:s');
+        $args = [
+            'login' => $_POST['login'],
+            'password' => md5($_POST['password']),
+            'created_at' => $date,
+            'updated_at' => $date
+        ];
+
+        $user = new UserModel();
+        $user->store($args);
+
+        return $user->getLastId();
     }
 
     /**
@@ -22,6 +53,16 @@ class UserController extends Controller {
     {
         $_SESSION['sid'] = $_GET['id'];
         header('Location: /');
+    }
+
+    /**
+     * Создание новой Сессии
+     *
+     * @param $id
+     */
+    public function newSession($id)
+    {
+        $_SESSION['sid'] = $id;
     }
 
     /**

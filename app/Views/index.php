@@ -29,6 +29,21 @@
                             <input class="button-primary" type="button" value="Войти" onclick="loginCheck()" id="login-btn">
                         </fieldset>
                     </form>
+
+                    <form action="/registration" class="auth" method="post">
+                        <fieldset>
+                            <label for="email">E-mail</label>
+                            <input type="text" placeholder="Ваш e-mail" id="login" name="login">
+                            <label for="password">Пароль</label>
+                            <input type="password" placeholder="Ваш пароль" id="password" name="password">
+                            <label for="name">Name</label>
+                            <input type="text" placeholder="Name" id="name" name="name">
+                            <label for="surname">Surname</label>
+                            <input type="text" placeholder="Surname" id="surname" name="surname">
+
+                            <input class="button-primary" type="submit" value="Зарегаться">
+                        </fieldset>
+                    </form>
                 </div>
 
                 <div class="registration-form none">

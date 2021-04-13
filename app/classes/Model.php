@@ -223,4 +223,13 @@ abstract class Model {
 
         return $sql;
     }
+
+    /**
+     * Берем последний вставленный id
+     * @return mixed
+     */
+    public function getLastId()
+    {
+        return $this->db->lastId();
+    }
 }

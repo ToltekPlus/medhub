@@ -65,6 +65,15 @@ class AccountModel extends Model {
     }
 
     /**
+     * @param $args
+     * @return mixed
+     */
+    public function store($args)
+    {
+        return $this->storeToTable($this->table, $args);
+    }
+
+    /**
      * возвращаем таблицу для статичного метода
      *
      * @return string
