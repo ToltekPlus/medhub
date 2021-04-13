@@ -9,7 +9,7 @@ class Database {
     private $host = "localhost";
     private $dbname = "web";
     private $user = "root";
-    private $password = "root";
+    private $password = "";
     public $connect;
 
     /**
@@ -50,5 +50,14 @@ class Database {
         $query = $this->connect->prepare($sql);
         $query->execute($params);
         return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Берем последний вставленный id
+     * @return string
+     */
+    public function lastId()
+    {
+        return $this->connect->lastInsertId();
     }
 }
