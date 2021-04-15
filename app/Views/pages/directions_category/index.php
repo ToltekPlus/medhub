@@ -31,7 +31,7 @@
                                         </svg>
                                     </a>
                                 </td>
-                                <td>' . $value->category_id . '</td>
+                                <td>' . $category[$value->category_id] . '</td>
                                 <td>' . $value->name_direction . '</td>
                                 <td>' . $value->price . '</td>
                                 <td>' . $value->created_at . '</td>

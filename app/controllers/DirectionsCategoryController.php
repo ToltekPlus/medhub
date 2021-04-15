@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Handler\Controller;
 use App\Model\DirectionsCategoryModel;
+use App\Model\CategoryModel;
 use Core\View;
 
 class DirectionsCategoryController extends Controller
@@ -13,10 +14,18 @@ class DirectionsCategoryController extends Controller
      */
     public function index()
     {
-        $model = new DirectionsCategoryModel();
-        $result = $model->showAll();
+        $direction_category_model = new DirectionsCategoryModel();
+        $category_model = new CategoryModel();
 
-        View::render('pages/directions_category/index.php', ['directions_category' => $result]);
+        $result_directions_category = $direction_category_model->showAll();
+        $result_category = $category_model->get_all();
+        $category = [];
+
+        foreach($result_category as $value){
+            $category[$value->id] = $value->name_category;
+        }
+
+        View::render('pages/directions_category/index.php', ['directions_category' => $result_directions_category, 'category' => $category]);
     }
 
     /**
