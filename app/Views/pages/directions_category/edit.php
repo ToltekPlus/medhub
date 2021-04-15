@@ -13,7 +13,17 @@
             <input type="hidden" name="id" value="<?=$directions_category['id']?>" required>
 
             <label for="category_id">Категория</label>
-            <input type="text" name="category_id" id="category_id" value="<?=$directions_category['category_id']?>" placeholder="Категория" required>
+            <select name="category_id" id="category_id">
+                <?php 
+                    foreach ($category as $key => $value) {
+                        echo '<option value="' . $key . '" ';
+                        if ($key == $directions_category['category_id']){
+                            echo 'selected';   
+                        } 
+                        echo'>' . $value .'</option>';
+                    }
+                ?>
+            </select>
 
             <label for="name_direction">Направление</label>
             <input type="text" name="name_direction" id="name_direction" placeholder="Направление" value="<?=$directions_category['name_direction']?>" required>

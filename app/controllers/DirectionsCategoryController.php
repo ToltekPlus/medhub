@@ -33,7 +33,17 @@ class DirectionsCategoryController extends Controller
      */
     public function show()
     {
-        View::render('pages/directions_category/add.php');
+
+        $category_model = new CategoryModel();
+
+        $result_category = $category_model->get_all();
+        $category = [];
+
+        foreach($result_category as $value){
+            $category[$value->id] = $value->name_category;
+        }
+
+        View::render('pages/directions_category/add.php', ['category' => $category]);
     }
 
     /**
@@ -65,7 +75,17 @@ class DirectionsCategoryController extends Controller
         $model = new DirectionsCategoryModel();
         $result = $model->getById($id);
 
-        View::render('pages/directions_category/edit.php', ['directions_category' => $result]);
+
+        $category_model = new CategoryModel();
+
+        $result_category = $category_model->get_all();
+        $category = [];
+
+        foreach($result_category as $value){
+            $category[$value->id] = $value->name_category;
+        }
+
+        View::render('pages/directions_category/edit.php', ['directions_category' => $result, 'category' => $category]);
     }
 
     // *

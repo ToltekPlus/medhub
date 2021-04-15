@@ -11,8 +11,15 @@
 
     <div class="dashboard-form">
         <form method="POST">
+
             <label for="category_id">Категория</label>
-            <input type="text" name="category_id" id="category_id" placeholder="Категория">
+            <select name="category_id" id="category_id">
+                <?php 
+                    foreach ($category as $key => $value) {
+                        echo '<option value="' . $key . '">' . $value .'</option>';
+                    }
+                ?>
+            </select>
 
             <label for="name_direction">Направление</label>
             <input type="text" name="name_direction" id="name_direction" placeholder="Направление">
