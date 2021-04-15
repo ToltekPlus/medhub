@@ -31,17 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             'page': 'add',
             'action': 'store',
-            'message': 'Данные добавлены'
+            'message': 'Данные добавлены', 
+            'redirect': ''
         },
         {
             'page': 'edit',
             'action': 'update',
-            'message': 'Данные обновлены'
+            'message': 'Данные обновлены',
+            'redirect': ''
         },
         {
             'page': 'warning',
             'action': 'delete',
-            'message': 'Данные удалены'
+            'message': 'Данные удалены',
+            'redirect': window.location.origin + "/home"
         }
     ];
 
@@ -83,6 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     form.reset(); // очищаем поля формы
                 })
                 .catch((err) => console.error(err))
+
+                if(operation[0]['redirect']){
+                    location = operation[0]['redirect'];
+                }
+
         });
     });
 });
