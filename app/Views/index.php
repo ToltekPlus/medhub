@@ -29,6 +29,8 @@
                             <input class="button-primary" type="button" value="Войти" onclick="loginCheck()" id="login-btn">
                         </fieldset>
                     </form>
+                      <p><a href="/home?id=1&access=2">HOME1</a></p> //тесты
+                      <p><a href="/home?id=2&access=1">HOME2</a></p> //тесты
                 </div>
 
                 <div class="registration-form none">

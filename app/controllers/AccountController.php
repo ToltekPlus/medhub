@@ -7,6 +7,7 @@ use App\Model\AccountModel;
 use Core\ControllerInterface;
 use Core\View;
 use App\Model\UserModel;
+use App\Controller\AccessController;
 
 class AccountController extends Controller implements ControllerInterface {
     // каталог для загрузки юзерпиков
@@ -78,7 +79,7 @@ class AccountController extends Controller implements ControllerInterface {
      */
     public function update()
     {
-        $id = $_POST['id'];
+        $id = $_SESSION['sid'];
 
         $args = [
             'name' => $_POST['name'],
@@ -115,12 +116,13 @@ class AccountController extends Controller implements ControllerInterface {
 
         $user = new UserController();
         $user_id = $user->registration();
+        $access_id = 1;
 
         if ($user_id != false)
         {
             $args = [
                 'user_id' => $user_id,
-                'access_id' => '1',
+                'access_id' => $access_id,
                 'name' => $_POST['new-name'],
                 'created_at' => $date,
                 'updated_at' => $date
@@ -130,6 +132,9 @@ class AccountController extends Controller implements ControllerInterface {
             $account->store($args);
 
             $user->newSession($user_id);
+
+            $access = new AccessController();
+            $access->newSaccess($access_id);
 
             return true;
         }
