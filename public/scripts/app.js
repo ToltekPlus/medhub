@@ -84,12 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(response)
 
                     form.reset(); // очищаем поля формы
-                })
-                .catch((err) => console.error(err))
 
                 if(operation[0]['redirect']){
                     location = operation[0]['redirect'];
                 }
+
+                })
+                .catch((err) => console.error(err))
 
         });
     });

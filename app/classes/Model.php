@@ -107,6 +107,31 @@ abstract class Model {
         return $sql;
     }
 
+
+    public function sctucturefindById($id, $table, $params)
+    {
+        $where = '';
+        $selected_tables = $table;
+        $count = count($params);
+
+        if ($count > 0) {
+          $where = ' WHERE ';
+          $where .= $table . '.id = ' . $id . ' AND ';
+          foreach ($params as $key => $value) {
+            $selected_tables = $selected_tables . ', ' . $value['table'];
+            if ($key == $count-1) {
+              $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table']. '.id ';
+            }else {
+              $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table']. '.id AND ';
+            }
+          }
+        }
+        $sql = "SELECT *, " . $table . ".id " . " FROM " . $selected_tables . $where;
+
+        return $sql;
+    }
+
+
     /**
      * Поиск по id
      *
@@ -220,7 +245,6 @@ abstract class Model {
         }
 
         $sql = 'INSERT INTO ' . $table . " (" .$set . ") VALUES (" . $values . ")";
-        var_dump($sql);
         return $sql;
     }
 }

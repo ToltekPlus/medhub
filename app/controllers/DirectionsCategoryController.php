@@ -15,17 +15,8 @@ class DirectionsCategoryController extends Controller
     public function index()
     {
         $direction_category_model = new DirectionsCategoryModel();
-        $category_model = new CategoryModel();
-
-        $result_directions_category = $direction_category_model->showAll();
-        $result_category = $category_model->get_all();
-        $category = [];
-
-        foreach($result_category as $value){
-            $category[$value->id] = $value->name_category;
-        }
-
-        View::render('pages/directions_category/index.php', ['directions_category' => $result_directions_category, 'category' => $category]);
+        $result = $direction_category_model->showAll();
+        View::render('pages/directions_category/index.php', ['directions_category' => $result]);
     }
 
     /**
@@ -70,11 +61,6 @@ class DirectionsCategoryController extends Controller
      */
     public function edit()
     {
-        $id = $_GET['id'];
-
-        $model = new DirectionsCategoryModel();
-        $result = $model->getById($id);
-
 
         $category_model = new CategoryModel();
 
@@ -84,6 +70,12 @@ class DirectionsCategoryController extends Controller
         foreach($result_category as $value){
             $category[$value->id] = $value->name_category;
         }
+
+
+        $id = $_GET['id'];
+
+        $model = new DirectionsCategoryModel();
+        $result = $model->getById($id);
 
         View::render('pages/directions_category/edit.php', ['directions_category' => $result, 'category' => $category]);
     }

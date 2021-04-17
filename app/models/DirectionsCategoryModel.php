@@ -13,7 +13,17 @@ class DirectionsCategoryModel extends Model {
     public function showAll()
     {
         $directions_categories = new DirectionsCategoryModel();
-        return $directions_categories->get($this->table);
+
+        $params = [
+            'table' => 'categories',
+            'foreign_key' => 'category_id'
+        ];
+
+        $sql = $directions_categories->sctuctureQuery($this->table, array($params),'id','table');  
+
+        $result = $this->db->query($sql);
+
+        return $result;     
     }
 
     /**
@@ -30,7 +40,16 @@ class DirectionsCategoryModel extends Model {
      */
     public function getById($id)
     {
-        return $this->findById($this->table, $id);
+        $params = [
+            'table' => 'categories',
+            'foreign_key' => 'category_id'
+        ];
+
+        $sql = $this->sctucturefindById($id, $this->table, array($params));  
+
+        $result = $this->db->query($sql);
+
+        return $result[0];
     }
 
     /**
