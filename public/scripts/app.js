@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'page': 'edit',
             'action': 'update',
             'message': 'Данные обновлены',
-            'redirect': ''
+            'redirect': window.location.origin + "/home"
         },
         {
             'page': 'warning',

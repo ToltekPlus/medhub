@@ -19,7 +19,7 @@ class DirectionsCategoryModel extends Model {
             'foreign_key' => 'category_id'
         ];
 
-        $sql = $directions_categories->sctuctureQuery($this->table, array($params),'id','table');  
+        $sql = $directions_categories->sctuctureQuery($this->table, array($params),'id',' '); 
 
         $result = $this->db->query($sql);
 

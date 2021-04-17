@@ -102,7 +102,13 @@ abstract class Model {
           }
           $where .= ' GROUP BY ' . $table. '.' . $group_key;
         }
-        $sql = "SELECT *, " . $table . ".id AS " . $table_key . " FROM " . $selected_tables . $where;
+
+        if(strlen(str_replace(' ', '', $table_key)))
+        $table_as = ' AS ' . $table_key;
+        else 
+        $table_as = ' ';
+
+        $sql = "SELECT *, " . $table . ".id" . $table_as . " FROM " . $selected_tables . $where;
 
         return $sql;
     }

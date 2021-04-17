@@ -21,7 +21,6 @@
                 </tr>
                 <?php
                     foreach ($directions_category as $key => $value) {
-                        var_dump($directions_category);
                         //TODO category_id - брать из модели category(пока не готова)
                         echo
                             '<tr>
