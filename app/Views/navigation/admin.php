@@ -9,7 +9,7 @@
 	
     <li>
         <a href="/directions_category">
-            <svg class="svg-directions_category">
+            <svg class="svg-access">
                 <use xlink:href="#settings"></use>
             </svg>
         </a>
