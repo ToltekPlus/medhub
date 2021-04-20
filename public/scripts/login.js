@@ -101,10 +101,40 @@ function registerCheck(){
 });}
 if(checkRegPass()&&checkRegName()&&checkRegEmail()==true){
   showError({
-      html: 'Входим!',
+      html: 'Проверка!',
       color: '#33e019',
-  });
+          });
 
-  location.href = '/home';
+  //location.href = '/home';
+  let userData =
+  {
+      'name': name,
+      'email': email,
+      'pass': password,
+      'path': '/registration',
+  }
+
+  asyncData(userData);
+
+}
+}
+
+
+function asyncData(userData) {
+
+
+      const dataSend = async (userData) => {
+          const fetchResp = await fetch(userData.path, {
+              method: 'POST',
+              body: userData
+          });
+
+          dataSend(userData)
+              .then((response) => {
+                location.href='/home'
+                console.log(response)
+              });
+
+
 }
 }

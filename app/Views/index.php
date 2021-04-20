@@ -20,7 +20,7 @@
                     <div class="invite">
                         Войдите в аккаунт или <a onclick="showRegistarionForm()">зарегистрируйтесь</a>
                     </div>
-                    <form class="auth" id='form'>
+                    <form class="auth" id='logForm'>
                         <fieldset>
                             <label for="email">E-mail</label>
                             <input type="text" placeholder="Ваш e-mail" id="email" name="email">
@@ -35,7 +35,7 @@
                   <div class="invite">
                       Есть аккаунт?<a onclick="showAuthForm()"> Войдите </a>или зарегистрируйтесь
                   </div>
-                  <form class="reg" id='form'>
+                  <form class="reg" id='regForm'>
                       <fieldset>
                           <label for="name">Имя</label>
                           <input type="text" placeholder="Вашe имя" id="new-name" name="name">
