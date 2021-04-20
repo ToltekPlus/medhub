@@ -92,4 +92,11 @@ class AccessController extends Controller
 
         //View::render('crud_result/delete_result.php', ['back_url' => '/accesses']);
     }
+
+    public function newSaccess($id)
+    {
+        $access = new AccessModel();
+
+        $_SESSION['saccess'] = $access->getById($id)['level_access'];
+    }
 }

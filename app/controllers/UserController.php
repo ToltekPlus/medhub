@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Handler\Controller;
 use App\Model\UserModel;
+use App\Controller\AccessController;
 
 class UserController extends Controller {
     /**
@@ -19,6 +20,10 @@ class UserController extends Controller {
         if($password == $user->password)
         {
             $this->newSession($user->id);
+
+            $access = new AccessController();
+            $access->newSaccess($access_id); //TODO дописать
+
             $result = true;
         }
         return $result;
@@ -74,5 +79,25 @@ class UserController extends Controller {
     public function logout()
     {
         parent::logout();
+    }
+
+    /**
+     * Обновление в таблице по id
+     *
+     * @throws \Exception
+     */
+    public function update()
+    {
+        $id = $_SESSION['sid'];
+
+        $args = [
+            'password' => md5($_POST['password'])
+        ];
+
+        $user = new UserModel();
+
+        $user->update($id, $args);
+
+        View::render('crud_result/update_result.php', ['back_url' => '/']);
     }
 }

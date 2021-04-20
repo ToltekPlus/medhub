@@ -12,6 +12,8 @@
     </div>
 
     <nav>
-        <?php require_once __DIR__ . '/../layouts/nav.php'; ?>
+        <div class="block-left-navigation">
+            <?php require_once __DIR__ . '/../navigation/admin.php'; ?>
+        </div>
     </nav>
 </div>

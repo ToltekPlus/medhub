@@ -13,3 +13,4 @@
         <div class="main">
 
         <? if ($_SESSION['sid']) echo '<a href=logout>Удалить сессию ' . $_SESSION['sid'] .'</a> <br>';?>
+        <? if ($_SESSION['saccess']) echo '<a href=logout>Удалить access ' . $_SESSION['saccess'] .'</a> <br>';?>
