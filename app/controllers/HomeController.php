@@ -10,15 +10,7 @@ class HomeController
 {
     public function __construct()
     {
-        $result = false;
-
-        if ($_POST['email'])
-        {
-            $user = new UserController();
-            $result = $user->auth();
-        }
-
-        return $result;
+        if(!$_SESSION['sid']){header('Location: /');}
     }
 
     public function index()

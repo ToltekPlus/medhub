@@ -20,9 +20,13 @@ class AccountController extends Controller implements ControllerInterface {
      */
     public function show()
     {
-        $accounts = AccountModel::showAll();
+        if($_SESSION['sid']){header('Location: /home');}
 
-        View::render('index.php', ['accounts' => $accounts]);
+        else
+        {
+            $accounts = AccountModel::showAll();
+            View::render('index.php', ['accounts' => $accounts]);
+        }
     }
 
     /**
