@@ -120,14 +120,14 @@ class AccountController extends Controller implements ControllerInterface {
 
         $user = new UserController();
         $user_id = $user->registration();
-        $access_id = 1;
 
         if ($user_id != false)
         {
+            $access_id= 1;
             $args = [
                 'user_id' => $user_id,
                 'access_id' => $access_id,
-                'name' => $_POST['new-name'],
+                'name' => $_POST['userData']['name'],
                 'created_at' => $date,
                 'updated_at' => $date
             ];
@@ -144,5 +144,18 @@ class AccountController extends Controller implements ControllerInterface {
         }
 
         else{return false;}
+    }
+
+    /**
+     * Берём аккаунт по user_id
+     *
+     * @param $user_id
+     * @return mixed
+     */
+    public function getAccount($user_id)
+    {
+        $account = new AccountModel();
+
+        return $account->getAccount($user_id);
     }
 }
