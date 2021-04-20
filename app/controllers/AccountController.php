@@ -93,7 +93,7 @@ class AccountController extends Controller implements ControllerInterface {
         $args = [
             'name' => $_POST['name'],
             'surname' => $_POST['surname'],
-            'userpic' => $userpic 
+            'userpic' => $userpic
         ];
 
         $account = new AccountModel();
