@@ -30,40 +30,40 @@ function showError({top = 0, right = 0, className, html, color}) {
 
 //проверка логин-почты
 function checkLogEmail(){
-  var email = document.getElementById("email").value;
+  var email = document.getElementById("log-email").value;
   var check = /\S+@\S+\.\S+/;
-  return check.test(email);
+  if(check.test(email)==true){return email;}else{return false;}
 }
 
 //проверка  логин-пароля
 function checkLogPass(){
-  var pass = document.getElementById("password").value
-  if(pass.trim().length<8){return false;}else{return true;}
+  var pass = document.getElementById("log-password").value
+  if(pass.trim().length<8){return false;}else{return pass;}
 }
 
 //проверка рег-почты
 function checkRegEmail(){
-  var email = document.getElementById("new-email").value;
+  var email = document.getElementById("reg-email").value;
   var check = /\S+@\S+\.\S+/;
-  return check.test(email);
+  if(check.test(email)==true){return email;}else{return false;}
 }
 
 //проверка рег-пароля
 function checkRegPass(){
-  var pass = document.getElementById("new-password").value
-  if(pass.trim().length<8){return false;}else{return true;}
+  var pass = document.getElementById("reg-password").value
+  if(pass.trim().length<8){return false;}else{return pass;}
 }
 
 //проверка рег-имени
 function checkRegName(){
-  var name = document.getElementById("new-name").value
-  if(name.trim().length>15){return false;}else{return true;}
+  var name = document.getElementById("reg-name").value
+  if(name.trim().length>15){return false;}else{return name;}
 }
 
 //логин функция
 function loginCheck(){
-  if(checkLogEmail()==true){
-    if(checkLogPass()==true){
+  if(checkLogEmail()!=false){
+    if(checkLogPass()!=false){
       //при true true
       showError({
           html: 'Входим!',
@@ -99,26 +99,23 @@ function registerCheck(){
   html: 'Пароль слишком короткий!',
   color: '#c93434',
 });}
-if(checkRegPass()&&checkRegName()&&checkRegEmail()==true){
+if(checkRegPass()&&checkRegName()&&checkRegEmail()!=false){
   showError({
       html: 'Проверка!',
       color: '#33e019',
           });
-
   //location.href = '/home';
   let userData =
   {
-      'name': name,
-      'email': email,
-      'pass': password,
+      'name': checkRegName(),
+      'email': checkRegEmail(),
+      'pass': checkRegPass(),
       'path': '/registration',
   }
-
   asyncData(userData);
-
+  console.log(userData)
 }
 }
-
 
 function asyncData(userData) {
 
