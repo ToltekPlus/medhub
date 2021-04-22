@@ -82,4 +82,15 @@ class AccountModel extends Model {
     {
         return $this->table;
     }
+
+    /**
+     * @param $user_id
+     * @return mixed
+     */
+    public function getAccount($user_id)
+    {
+        $sql = "SELECT * FROM " . $this->table . " WHERE user_id=" . $user_id;
+
+        return $this->first($sql);
+    }
 }

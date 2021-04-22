@@ -93,6 +93,11 @@ class AccessController extends Controller
         //View::render('crud_result/delete_result.php', ['back_url' => '/accesses']);
     }
 
+    /**
+     * Создание сессии для access_level
+     *
+     * @param $id
+     */
     public function newSaccess($id)
     {
         $access = new AccessModel();
