@@ -23,9 +23,9 @@
                     <form class="auth" id='logForm'>
                         <fieldset>
                             <label for="email">E-mail</label>
-                            <input type="text" placeholder="Ваш e-mail" id="email" name="email">
+                            <input type="text" placeholder="Ваш e-mail" id="log-email" name="email">
                             <label for="password">Пароль</label>
-                            <input type="password" placeholder="Ваш пароль" id="password" name="password">
+                            <input type="password" placeholder="Ваш пароль" id="log-password" name="password">
                             <input class="button-primary" type="button" value="Войти" onclick="loginCheck()" id="login-btn">
                         </fieldset>
                     </form>
@@ -38,12 +38,12 @@
                   <form class="reg" id='regForm'>
                       <fieldset>
                           <label for="name">Имя</label>
-                          <input type="text" placeholder="Вашe имя" id="new-name" name="name">
+                          <input type="text" placeholder="Вашe имя" id="reg-name" name="name">
                           <label for="email">E-mail</label>
-                          <input type="text" placeholder="Ваш e-mail" id="new-email" name="email">
+                          <input type="text" placeholder="Ваш e-mail" id="reg-email" name="email">
                           <label for="password">Пароль</label>
-                          <input type="password" placeholder="Ваш пароль" id="new-password" name="password">
-                          <input class="button-primary" type="button" value="Создать и войти" onclick="registerCheck()" id="reg-btn">
+                          <input type="password" placeholder="Ваш пароль" id="reg-password" name="password">
+                          <input class="button-primary" type="button" value="Войти" onclick="registerCheck()" id="reg-btn">
                       </fieldset>
                   </form>
               </div>
