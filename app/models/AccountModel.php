@@ -91,6 +91,6 @@ class AccountModel extends Model {
     {
         $sql = "SELECT * FROM " . $this->table . " WHERE user_id=" . $user_id;
 
-        return $this->first($sql);x
+        return $this->first($sql);
     }
 }
