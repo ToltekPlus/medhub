@@ -43,7 +43,7 @@
                           <input type="text" placeholder="Ваш e-mail" id="reg-email" name="email">
                           <label for="password">Пароль</label>
                           <input type="password" placeholder="Ваш пароль" id="reg-password" name="password">
-                          <input class="button-primary" type="button" value="Войти" onclick="registerCheck()" id="reg-btn">
+                          <input class="button-primary" type="button" value="Зарегистрироваться" onclick="registerCheck()" id="reg-btn">
                       </fieldset>
                   </form>
               </div>
