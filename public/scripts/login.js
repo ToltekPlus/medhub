@@ -21,11 +21,14 @@ function showError({top = 0, right = 0, className, html, color}) {
     error.innerHTML = html;
 
     erdiv.append(error);
-
+    //кнопка входа
     document.getElementById('login-btn').style.display = 'none';
     setTimeout(() => {error.remove()}, 2000);
     setTimeout(() => {document.getElementById('login-btn').style.display = 'block';}, 2000);
-
+    //кнопка регистрации
+    document.getElementById('reg-btn').style.display = 'none';
+    setTimeout(() => {error.remove()}, 2000);
+    setTimeout(() => {document.getElementById('reg-btn').style.display = 'block';}, 2000);
 }
 
 //проверка логин-почты
@@ -66,11 +69,18 @@ function loginCheck(){
     if(checkLogPass()!=false){
       //при true true
       showError({
-          html: 'Входим!',
+          html: 'Проверка!',
           color: '#33e019',
-      });
+              });
 
-      location.href = '/home';
+      let userData =
+      {
+          'type': 'login',
+          'email': checkLogEmail(),
+          'pass': checkLogPass(),
+          'path': '/login',
+      }
+      asyncData(userData);
 
     }else{
       //при true false
@@ -104,34 +114,39 @@ if(checkRegPass()&&checkRegName()&&checkRegEmail()!=false){
       html: 'Проверка!',
       color: '#33e019',
           });
-  //location.href = '/home';
+
   let userData =
   {
+      'type': 'registration',
       'name': checkRegName(),
       'email': checkRegEmail(),
       'pass': checkRegPass(),
       'path': '/registration',
   }
   asyncData(userData);
-  console.log(userData)
+
 }
 }
 
 function asyncData(userData) {
 
-
-      const dataSend = async (userData) => {
+      const dataSend = async(userData) => {
           const fetchResp = await fetch(userData.path, {
               method: 'POST',
               body: userData
           });
-
-          dataSend(userData)
-              .then((response) => {
-                location.href='/home'
-                console.log(response)
-              });
-
+          return await fetchResp.text();
 
 }
+
+dataSend(userData)
+    .then((response) => {
+      //checkResponse(response);
+      console.log(response)
+      console.log('redirection')
+    })
+    .catch((e) => {console.log(e)});
 }
+
+//function checkResponse(response){
+//if(response==true){location.href='/home'}
