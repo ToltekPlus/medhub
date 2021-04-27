@@ -141,11 +141,12 @@ function asyncData(userData) {
 
 dataSend(userData)
     .then((response) => {
-      //checkResponse(response);
+      checkResponse(response);
       console.log(response)
     })
     .catch((e) => {console.log(e)});
 }
 
-//function checkResponse(response){
-//if(response==true){location.href='/home'}
+function checkResponse(response){
+if(response==true){location.href='/home'}
+}
