@@ -133,20 +133,20 @@ function asyncData(userData) {
       const dataSend = async(userData) => {
           const fetchResp = await fetch(userData.path, {
               method: 'POST',
-              body: userData
-          });
+              body: JSON.stringify(userData)
+            });
           return await fetchResp.text();
 
 }
 
 dataSend(userData)
     .then((response) => {
-      //checkResponse(response);
+      checkResponse(response);
       console.log(response)
-      console.log('redirection')
     })
     .catch((e) => {console.log(e)});
 }
 
-//function checkResponse(response){
-//if(response==true){location.href='/home'}
+function checkResponse(response){
+if(response==true){location.href='/home'}
+}

@@ -114,7 +114,7 @@ class AccountController extends Controller implements ControllerInterface {
     /**
      * Регистрация нового акаунта
      */
-    static function registration()
+    public function registration()
     {
         $date = date('Y-m-d H:i:s');
 
