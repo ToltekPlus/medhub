@@ -114,7 +114,7 @@ class AccountController extends Controller implements ControllerInterface {
     /**
      * Регистрация нового акаунта
      */
-    static function registration()
+    public function registration()
     {
         $userData = json_decode(file_get_contents('php://input'));
         $date = date('Y-m-d H:i:s');
