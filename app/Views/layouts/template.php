@@ -13,7 +13,7 @@
 
     <nav>
         <div class="block-left-navigation">
-            <?php require_once __DIR__ . '/../navigation/admin.php'; ?>
+            <?php require_once __DIR__ . '/../navigation/admin.php'; //TODO менюшки подсовывать ?>
         </div>
     </nav>
 </div>

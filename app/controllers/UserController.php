@@ -15,8 +15,10 @@ class UserController extends Controller {
      */
     public function auth()
     {
-        $email = $_POST['userData']['email'];
-        $password = md5($_POST['userData']['pass']);
+        $userData = json_decode(file_get_contents('php://input'));
+
+        $email = $userData->email;
+        $password = md5($userData->pass);
         $result = false;
 
         $user = UserModel::showAuth($email);
@@ -42,16 +44,17 @@ class UserController extends Controller {
      */
     static function registration()
     {
+        $userData = json_decode(file_get_contents('php://input'));
         $date = date('Y-m-d H:i:s');
         $args = [
-            'login' => $_POST['userData']['email'],
-            'password' => md5($_POST['userData']['pass']),
+            'login' => $userData->email,
+            'password' => md5($userData->pass),
             'created_at' => $date,
             'updated_at' => $date
         ];
 
         $user = new UserModel();
-        if($user->authQuery($_POST['userData']['email']) != NONE)
+        if($user->authQuery($userData->email) != NONE)
         {
             $user->store($args);
             return $user->getLastId();

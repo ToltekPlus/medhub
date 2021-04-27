@@ -116,6 +116,7 @@ class AccountController extends Controller implements ControllerInterface {
      */
     static function registration()
     {
+        $userData = json_decode(file_get_contents('php://input'));
         $date = date('Y-m-d H:i:s');
 
         $user = new UserController();
@@ -127,7 +128,7 @@ class AccountController extends Controller implements ControllerInterface {
             $args = [
                 'user_id' => $user_id,
                 'access_id' => $access_id,
-                'name' => $_POST['userData']['name'],
+                'name' => $userData->name,
                 'created_at' => $date,
                 'updated_at' => $date
             ];
