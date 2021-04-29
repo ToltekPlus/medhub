@@ -9,11 +9,11 @@
                 <form>
                     <select class="miniwindow">
                         <option>-none-</option>
-                        <option value="0-13"><?php
-                            foreach ($dashboard as $key=>$value){
-                                echo $value->name_direction;
-                            }
-                            ?></option>
+                        <?php
+                        foreach ($dashboard as $key => $value){
+                            echo '<option>' . $value->name_direction . '</option>';
+                        }
+                        ?>
                     </select>
                 </form>
             </div>

@@ -250,7 +250,7 @@ abstract class Model {
                     $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table'] . '.id AND ';
                 }
             }
-            $where .= ' AND ' . 'access_id = 3' . ' GROUP BY ' . $table. '.' . $group_key;
+            $where .= ' AND ' . ' ' . ' GROUP BY ' . $table. '.' . $group_key;
         }
         $sql = "SELECT *, " . $table . ".id AS " . $table_key . " FROM " . $selected_tables . $where;
 

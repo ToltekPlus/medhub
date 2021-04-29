@@ -38,7 +38,7 @@ class DashboardModel extends Model{
                 'foreign_key' => 'doctor_direction_id'
             ]
         ];
-        return $dashboard->allReception($dashboard->query(), $mass , '', 'dashboard_key');
+        return $dashboard->all($dashboard->query(), $mass , '', 'dashboard_key');
     }
 
 
