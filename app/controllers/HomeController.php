@@ -15,14 +15,6 @@ class HomeController
 
     public function index()
     {
-        if($_GET['id']){$_SESSION['sid'] = $_GET['id'];} //тесты, нада убрать
-
-        if($_GET['access'])
-        {
-            $access = new AccessController();
-            $access->newSaccess($_GET['access']);
-        } //тесты, нада убрать
-
         View::render('pages/home/index.php');
     }
 }

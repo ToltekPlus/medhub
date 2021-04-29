@@ -68,10 +68,6 @@ function loginCheck(){
   if(checkLogEmail()!=false){
     if(checkLogPass()!=false){
       //при true true
-      showError({
-          html: 'Проверка!',
-          color: '#33e019',
-              });
 
       let userData =
       {
@@ -110,10 +106,6 @@ function registerCheck(){
   color: '#c93434',
 });}
 if(checkRegPass()&&checkRegName()&&checkRegEmail()!=false){
-  showError({
-      html: 'Проверка!',
-      color: '#33e019',
-          });
 
   let userData =
   {
@@ -147,6 +139,13 @@ dataSend(userData)
 function checkResponse(response) {
     if (response == true) {
         location.href = '/home'
+    }
+    else
+    {
+        showError({
+            html: 'Неверные данные!',
+            color: '#c93434',
+        });
     }
 }
 

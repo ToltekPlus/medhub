@@ -27,7 +27,7 @@ class UserController extends Controller {
             $this->newSession($user->id);
 
             $account = new AccountController();
-            $access_id = $account->getAccount($user->id);
+            $access_id = $account->getAccount($user->id)->access_id;
 
             $access = new AccessController();
             $access->newSaccess($access_id);
@@ -35,7 +35,7 @@ class UserController extends Controller {
             $result = true;
         }
 
-        return $result;
+        echo $result;
     }
 
     /**
@@ -54,7 +54,7 @@ class UserController extends Controller {
         ];
 
         $user = new UserModel();
-        if($user->authQuery($userData->email) != NONE)
+        if(!is_bool($user->authQuery($userData->email)))
         {
             $user->store($args);
             return $user->getLastId();

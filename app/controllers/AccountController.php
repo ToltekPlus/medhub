@@ -141,10 +141,10 @@ class AccountController extends Controller implements ControllerInterface {
             $access = new AccessController();
             $access->newSaccess($access_id);
 
-            return true;
+            echo true;
         }
 
-        else{return false;}
+        else{echo 3;}
     }
 
     /**
