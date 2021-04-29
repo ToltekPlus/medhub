@@ -26,7 +26,7 @@ foreach ($accounts as $key => $value) {
                 </div>
                 Email: ' . $value->email . '<br>' .
                 'Имя/Фамилия: ' . $value->name . ' ' . $value->surname . '<br>' .
-                'Уровень доступа: ' . $value->name_access . ' с уровнем ' . $value->level_access . '<br>' .
+                'Уровень sada доступа: ' . $value->name_access . ' с уровнем ' . $value->level_access . '<br>' .
                 'Пользовательский ID: <a href=account?id=' . $value->account_key .'>' . $value->account_key . '</a> <br>
             </div>
         </div>';
