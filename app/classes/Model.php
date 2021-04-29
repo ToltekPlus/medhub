@@ -223,4 +223,39 @@ abstract class Model {
 
         return $sql;
     }
+    public function allReception($table, $params, $group_key, $table_key){
+        $sql = $this->structureQueryForReception($table, $params, $group_key, $table_key);
+
+        $result = $this->db->query($sql);
+
+        return $result;
+    }
+
+    public function structureQueryForReception($table, $params, $group_key, $table_key){
+        $where = '';
+        $selected_tables = $table;
+        $count = count($params);
+        $group_length = strlen(str_replace(' ', '', $group_key));
+        if ($group_length == 0) {
+            $group_key = 'id';
+        }
+
+        if ($count > 0) {
+            $where = ' WHERE ';
+            foreach ($params as $key => $value) {
+                $selected_tables = $selected_tables . ', ' . $value['table'];
+                if ($key == $count-1) {
+                    $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table'] . '.id ';
+                }else {
+                    $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table'] . '.id AND ';
+                }
+            }
+            $where .= ' AND ' . 'access_id = 3' . ' GROUP BY ' . $table. '.' . $group_key;
+        }
+        $sql = "SELECT *, " . $table . ".id AS " . $table_key . " FROM " . $selected_tables . $where;
+
+        //var_dump($sql);
+
+        return $sql;
+    }
 }

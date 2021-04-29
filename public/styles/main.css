@@ -186,11 +186,28 @@ h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
-
-
-
-
-
+.content{
+    padding: 25px;
+    text-align: center;
+    border-radius: 5px;
+    border-color: black;
+    background-color: grey;
+    margin-top:50px;
+    margin-left: 150px;
+    display: flex;
+    width: 800px;
+    color:black;
+}
+.Window{
+    border: 2px solid white;
+    text-align: center;
+    margin-bottom: 5px;
+    background-color: grey;
+    width: 200px;
+}
+.miniwindow{
+    width: 100%;
+}
 /*
 --------------------------------------------------------------------------
 Тестируемые стили для примера
