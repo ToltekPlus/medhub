@@ -31,20 +31,35 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             'page': 'add',
             'action': 'store',
+<<<<<<< HEAD
             'message': 'Данные добавлены', 
             'redirect': ''
+=======
+            'redirect': '',
+            'message': 'Данные добавлены'
+>>>>>>> master
         },
         {
             'page': 'edit',
             'action': 'update',
+<<<<<<< HEAD
             'message': 'Данные обновлены',
             'redirect': window.location.origin + "/home"
+=======
+            'redirect': '',
+            'message': 'Данные обновлены'
+>>>>>>> master
         },
         {
             'page': 'warning',
             'action': 'delete',
+<<<<<<< HEAD
             'message': 'Данные удалены',
             'redirect': window.location.origin + "/home"
+=======
+            'redirect': '../accesses',
+            'message': 'Данные удалены'
+>>>>>>> master
         }
     ];
 
@@ -92,6 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .catch((err) => console.error(err))
 
+<<<<<<< HEAD
+=======
+                if(operation[0]['redirect']){
+                	location = operation[0]['redirect'];
+                }
+
+>>>>>>> master
         });
     });
 });

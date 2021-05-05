@@ -34,8 +34,8 @@
                                 <td>' . $value->name_category . '</td>
                                 <td>' . $value->name_direction . '</td>
                                 <td>' . $value->price . '</td>
-                                <td>' . $value->created_at . '</td>
-                                <td>' . $value->updated_at . '</td>
+                                <td>' . date('H:i:s d/m/Y ', strtotime($value->created_at)) . '</td>
+                                <td>' . date('H:i:s d/m/Y ', strtotime($value->updated_at)) . '</td>
                                 <td>
                                     <a href=directions_category/warning?id=' . $value->id .'>
                                         <svg class="svg-delete">

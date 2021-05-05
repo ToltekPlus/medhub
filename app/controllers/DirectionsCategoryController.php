@@ -46,8 +46,8 @@ class DirectionsCategoryController extends Controller
             'category_id' => $_POST['category_id'],
             'name_direction' => $_POST['name_direction'],
             'price' => $_POST['price'],
-            'created_at' => date('Y-m-d H:i:s', time()),
-            'updated_at' => date('Y-m-d H:i:s', time())
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ];
 
         $model = new DirectionsCategoryModel();
@@ -70,7 +70,6 @@ class DirectionsCategoryController extends Controller
         foreach($result_category as $value){
             $category[$value->id] = $value->name_category;
         }
-
 
         $id = $_GET['id'];
 
