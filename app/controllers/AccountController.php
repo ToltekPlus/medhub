@@ -83,7 +83,7 @@ class AccountController extends Controller implements ControllerInterface {
      */
     public function update()
     {
-        $id = $_SESSION['sid'];
+        $id = $_SESSION['said'];
 
         $args = [
             'name' => $_POST['name'],
@@ -130,13 +130,15 @@ class AccountController extends Controller implements ControllerInterface {
                 'access_id' => $access_id,
                 'name' => $userData->name,
                 'created_at' => $date,
-                'updated_at' => $date
+                'updated_at' => $date,
+                'userpic' => "images/accounts/default.png"
             ];
 
             $account = new AccountModel();
             $account->store($args);
 
             $user->newSession($user_id);
+            $this->newSession($account->getLastId());
 
             $access = new AccessController();
             $access->newSaccess($access_id);
@@ -158,5 +160,15 @@ class AccountController extends Controller implements ControllerInterface {
         $account = new AccountModel();
 
         return $account->getAccount($user_id);
+    }
+
+    /**
+     * Создание новой Сессии
+     *
+     * @param $id
+     */
+    public function newSession($id)
+    {
+        $_SESSION['said'] = $id;
     }
 }

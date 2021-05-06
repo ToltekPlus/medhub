@@ -28,6 +28,7 @@ class UserController extends Controller {
 
             $account = new AccountController();
             $access_id = $account->getAccount($user->id)->access_id;
+            $account->newSession($account->getAccount($user->id)->id);
 
             $access = new AccessController();
             $access->newSaccess($access_id);

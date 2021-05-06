@@ -84,6 +84,8 @@ class AccountModel extends Model {
     }
 
     /**
+     * Берём аккаунт по user_id
+     *
      * @param $user_id
      * @return mixed
      */
