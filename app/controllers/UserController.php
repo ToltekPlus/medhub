@@ -54,7 +54,7 @@ class UserController extends Controller {
         ];
 
         $user = new UserModel();
-        if(!is_bool($user->authQuery($userData->email)))
+        if(!$user->showAuth($userData->email))
         {
             $user->store($args);
             return $user->getLastId();

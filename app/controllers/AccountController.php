@@ -144,7 +144,7 @@ class AccountController extends Controller implements ControllerInterface {
             echo true;
         }
 
-        else{echo 3;}
+        else{echo false;}
     }
 
     /**
