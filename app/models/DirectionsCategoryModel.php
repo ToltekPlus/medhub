@@ -4,16 +4,26 @@ namespace App\Model;
 
 use App\Handler\Model;
 
-class AccessModel extends Model {
-    private $table = 'accesses';
+class DirectionsCategoryModel extends Model {
+    private $table = 'directions_category';
 
     /**
      * @return array
      */
     public function showAll()
     {
-        $accesses = new AccessModel();
-        return $accesses->get($this->table);
+        $directions_categories = new DirectionsCategoryModel();
+
+        $params = [
+            'table' => 'categories',
+            'foreign_key' => 'category_id'
+        ];
+
+        $sql = $directions_categories->sctuctureQuery($this->table, array($params),'id',' '); 
+
+        $result = $this->db->query($sql);
+
+        return $result;     
     }
 
     /**
@@ -30,7 +40,16 @@ class AccessModel extends Model {
      */
     public function getById($id)
     {
-        return $this->findById($this->table, $id);
+        $params = [
+            'table' => 'categories',
+            'foreign_key' => 'category_id'
+        ];
+
+        $sql = $this->sctucturefindById($id, $this->table, array($params));  
+
+        $result = $this->db->query($sql);
+
+        return $result[0];
     }
 
     /**

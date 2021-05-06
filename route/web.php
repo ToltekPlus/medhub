@@ -49,6 +49,19 @@ $router->add('access/update', ['controller' => 'AccessController', 'action' => '
 $router->add('access/warning?{id}', ['controller' => 'AccessController', 'action' => 'warning']);
 $router->add('access/delete?{id}', ['controller' => 'AccessController', 'action' => 'delete']);
 
+/*
+--------------------------------------------------------------------------
+Работа с direction_category
+--------------------------------------------------------------------------
+*/
+$router->add('directions_category', ['controller' => 'DirectionsCategoryController', 'action' => 'index']);
+$router->add('directions_category/add', ['controller' => 'DirectionsCategoryController', 'action' => 'show']);
+$router->add('directions_category/store', ['controller' => 'DirectionsCategoryController', 'action' => 'store']);
+$router->add('directions_category/edit?{id}', ['controller' => 'DirectionsCategoryController', 'action' => 'edit']);
+$router->add('directions_category/update', ['controller' => 'DirectionsCategoryController', 'action' => 'update']);
+
+$router->add('directions_category/warning?{id}', ['controller' => 'DirectionsCategoryController', 'action' => 'warning']);
+$router->add('directions_category/delete?{id}', ['controller' => 'DirectionsCategoryController', 'action' => 'delete']);
 
 
 
