@@ -15,7 +15,7 @@
                     <tbody>
                     <?php
                     foreach ($dashboard as $key => $value){
-                        echo '<tr>' . '<th>' . $value->name . $value->surname . '</th>'
+                        echo '<tr>' . '<th>' . $value->name . ' ' . $value->surname . '</th>'
                             . '<th>' . 'Врач'
                             . '<th>' . $value->time_of_visit . '</th>'
                             . '<th>' . $value->client_id .'</th>' . '</tr>';

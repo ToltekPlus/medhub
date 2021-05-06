@@ -223,6 +223,17 @@ abstract class Model {
 
         return $sql;
     }
+
+    /**
+     * показать данные которые связаны с докторами
+     *
+     * @param $table
+     * @param $params
+     * @param $group_key
+     * @param $table_key
+     * @return array
+     */
+
     public function allReception($table, $params, $group_key, $table_key){
         $sql = $this->structureQueryForReception($table, $params, $group_key, $table_key);
 
@@ -230,6 +241,17 @@ abstract class Model {
 
         return $result;
     }
+
+    /**
+     *
+     * по сути делаем тоже что и в методе выше(sctuctureQuery), то-есть состовляем sql запрос,
+     * но при этом делаем выборку по докторам через access_id и doctor_directions.user_id
+     * @param $table
+     * @param $params
+     * @param $group_key
+     * @param $table_key
+     * @return string
+     */
 
     public function structureQueryForReception($table, $params, $group_key, $table_key){
         $where = '';
@@ -248,13 +270,15 @@ abstract class Model {
                     $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table'] . '.id ';
                 }else {
                     $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table'] . '.id AND ';
+
+                    $select = ' AND ' . $table . '.' . $value['foreign_key'] . ' = ' . $value['table'] . '.' . $value['foreign_key'];
                 }
             }
-            $where .= ' AND ' . ' ' . ' GROUP BY ' . $table. '.' . $group_key;
+            $select = ' AND ' . $table . '.' . $value['foreign_key'] . ' = ' . $value['table'] . '.' . $value['foreign_key'];
+
+            $where .= ' AND ' . ' access_id = 2 ' . $select . ' GROUP BY ' . $table. '.' . $group_key;
         }
         $sql = "SELECT *, " . $table . ".id AS " . $table_key . " FROM " . $selected_tables . $where;
-
-        //var_dump($sql);
 
         return $sql;
     }
