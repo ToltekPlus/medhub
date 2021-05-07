@@ -182,7 +182,7 @@ abstract class Model {
     public function updateForTable($table, $id, $args)
     {
         $sql = $this->structureQueryForUpdate($id, $table, $args);
-
+        var_dump($sql);
         $this->db->execute($sql, $args);
     }
 
@@ -222,7 +222,6 @@ abstract class Model {
     public function storeToTable($table, $args)
     {
         $sql = $this->structureQueryForStore($table, $args);
-
         $this->db->execute($sql, $args);
     }
 
