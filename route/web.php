@@ -35,7 +35,7 @@ $router->add('registration', ['controller' => 'AccountController', 'action' => '
 */
 $router->add('account?{id}', ['controller' => 'AccountController', 'action' => 'getById']);
 $router->add('account/delete?{id}', ['controller' => 'AccountController', 'action' => 'deleteById']);
-$router->add('account/edit?{id}', ['controller' => 'AccountController', 'action' => 'edit']);
+$router->add('account/edit', ['controller' => 'AccountController', 'action' => 'edit']);
 $router->add('account/update', ['controller' => 'AccountController', 'action' => 'update']);
 
 /*

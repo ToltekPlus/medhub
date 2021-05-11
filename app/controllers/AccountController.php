@@ -50,7 +50,7 @@ class AccountController extends Controller implements ControllerInterface {
      */
     public function edit()
     {
-        $id = $_GET['id'];
+        $id = $_SESSION['said'];
         $account = new AccountModel();
         $result = $account->getById($id);
 
