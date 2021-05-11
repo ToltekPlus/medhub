@@ -13,23 +13,45 @@
             <div class="block-bg-image"></div>
             <div class="block-auth-form">
                 <div class="form-control">
-                    <h3>Добро пожаловать <br> к «Врачевателю»</h3>
-                    <div class="invite">
-                        Войдите в аккаунт или <a href="/register">зарегистрируйтесь</a>
-                    </div>
+                  <h3>Добро пожаловать <br> к «Врачевателю»</h3>
 
-                    <form action="/home" class="auth">
+                  <div id="erdiv">
+                  <div class="login-form">
+                    <div class="invite">
+                        Войдите в аккаунт или <a onclick="showRegistarionForm()">зарегистрируйтесь</a>
+                    </div>
+                    <form class="auth" id='logForm'>
                         <fieldset>
                             <label for="email">E-mail</label>
-                            <input type="text" placeholder="Ваш e-mail" id="email" name="email">
+                            <input type="text" placeholder="Ваш e-mail" id="log-email" name="email">
                             <label for="password">Пароль</label>
-                            <input type="password" placeholder="Ваш пароль" id="password" name="password">
-
-                            <input class="button-primary" type="submit" value="Войти">
+                            <input type="password" placeholder="Ваш пароль" id="log-password" name="password">
+                            <input class="button-primary" type="button" value="Войти" onclick="loginCheck()" id="login-btn">
                         </fieldset>
                     </form>
                 </div>
+
+                <div class="registration-form none">
+                  <div class="invite">
+                      Есть аккаунт?<a onclick="showAuthForm()"> Войдите </a>или зарегистрируйтесь
+                  </div>
+                  <form class="reg" id='regForm'>
+                      <fieldset>
+                          <label for="name">Имя</label>
+                          <input type="text" placeholder="Вашe имя" id="reg-name" name="name">
+                          <label for="email">E-mail</label>
+                          <input type="text" placeholder="Ваш e-mail" id="reg-email" name="email">
+                          <label for="password">Пароль</label>
+                          <input type="password" placeholder="Ваш пароль" id="reg-password" name="password">
+                          <input class="button-primary" type="button" value="Зарегистрироваться" onclick="registerCheck()" id="reg-btn">
+                      </fieldset>
+                  </form>
+              </div>
+
+            </div>
             </div>
         </div>
+      <script src="/scripts/login.js"></script>
+      <script src="/scripts/registration.js"></script>
     </body>
 </html>
