@@ -84,27 +84,29 @@ class AccountController extends Controller implements ControllerInterface {
     public function update()
     {
         $id = $_SESSION['said'];
-
-        $args = [
-            'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
-        ];
-
-        if (isset($_FILES['userpic']))
-            $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
-            $args['userpic'] =  $userpic;
-
-
-        $args = [
-            'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
-            'userpic' => $userpic
-        ];
-
+        $date = date('Y-m-d H:i:s');
+        $old_userpic = "/images/accounts/default.png";
         $account = new AccountModel();
 
-        if (strlen($account->getById($id)['userpic']) > 0) //если в базе есть старая картинка, удалить ее
-            $this->deleteImage($account->getById($id)['userpic']);
+        if (strlen($account->getById($id)['userpic']) > 0 and $account->getById($id)['userpic'] != "/images/accounts/default.png") //если в базе есть старая картинка, то поставить ее вместо дефолта
+            $old_userpic = $account->getById($id)['userpic'];
+
+        if (isset($_FILES['userpic']))
+        {
+            $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
+            if(strlen($userpic) > 0) $args['userpic'] = $userpic;
+            else $userpic = $old_userpic;
+        }
+
+        $args = [
+            'name' => $_POST['name'],
+            'surname' => $_POST['surname'],
+            'userpic' => $userpic,
+            'updated_at' => $date
+        ];
+
+        if (strlen($old_userpic) > 0 and $account->getById($id)['userpic'] != "/images/accounts/default.png" and $userpic != $old_userpic) //если в базе есть старая картинка, удалить ее
+            $this->deleteImage($old_userpic);
 
         $account->update($id, $args);
 
@@ -131,7 +133,7 @@ class AccountController extends Controller implements ControllerInterface {
                 'name' => $userData->name,
                 'created_at' => $date,
                 'updated_at' => $date,
-                'userpic' => "images/accounts/default.png"
+                'userpic' => "/images/accounts/default.png"
             ];
 
             $account = new AccountModel();

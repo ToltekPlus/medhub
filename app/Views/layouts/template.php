@@ -1,6 +1,6 @@
 <div class="block-left">
     <div class="logo"></div>
-    <?php require_once __DIR__ . '/account_info.php'?>
+    <?php \Core\View::renderAccountInformation(); ?>
     <nav>
         <div class="block-left-navigation">
             <?php switch ($_SESSION['saccess'])

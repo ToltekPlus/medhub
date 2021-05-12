@@ -11,7 +11,7 @@
             <input type="text" name="name" id="name" placeholder="Имя" value="<?=$account['name']?>" required>
 
             <label for="surname">Фамилия</label>
-            <input type="text" name="surname" id="surname" placeholder="Фамилия" value="<?=$account['surname']?>" required>
+            <input type="text" name="surname" id="surname" placeholder="Фамилия" value="<?=$account['surname']?>">
 
             <label for="userpic">Юзерпик</label>
             <input type="file" name="userpic">
