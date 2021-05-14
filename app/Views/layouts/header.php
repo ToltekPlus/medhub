@@ -1,4 +1,3 @@
-<!-- HEADER -->
 <html>
     <head>
         <title>Запись к врачу</title>

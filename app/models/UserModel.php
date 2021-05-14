@@ -21,6 +21,14 @@ class UserModel extends Model {
         return $result;
     }
 
+    public function showAll()
+    {
+        $user = new UserModel();
+        $result = $user->get($this->table);
+
+        return $result;
+    }
+
     //TODO сделать нормальную авторизацию
     /**
      * @return string
