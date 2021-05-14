@@ -82,7 +82,7 @@ class Controller
                 //Если каталога для загрузки нет - создаем
                 if(!file_exists($img_path)) mkdir($img_path);
                 //загружаем файл
-                if(move_uploaded_file($image['tmp_name'], $src)) return $src; else echo 'Ошибка при загрузке';
+                if(move_uploaded_file($image['tmp_name'], $src)) return "/" . $src; else echo 'Ошибка при загрузке';
             }
             else exit('Файл большого объема'.'<br>');
         }

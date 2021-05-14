@@ -65,6 +65,15 @@ class AccountModel extends Model {
     }
 
     /**
+     * @param $args
+     * @return mixed
+     */
+    public function store($args)
+    {
+        return $this->storeToTable($this->table, $args);
+    }
+
+    /**
      * возвращаем таблицу для статичного метода
      *
      * @return string
@@ -72,5 +81,18 @@ class AccountModel extends Model {
     public function query()
     {
         return $this->table;
+    }
+
+    /**
+     * Берём аккаунт по user_id
+     *
+     * @param $user_id
+     * @return mixed
+     */
+    public function getAccount($user_id)
+    {
+        $sql = "SELECT * FROM " . $this->table . " WHERE user_id=" . $user_id;
+
+        return $this->first($sql);
     }
 }

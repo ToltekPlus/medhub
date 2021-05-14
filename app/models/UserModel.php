@@ -7,19 +7,20 @@ use App\Handler\Model;
 class UserModel extends Model {
     private $table = "users";
 
-    //TODO сделать нормальную авторизацию
     /**
+     * @param $email
      * @return mixed
      */
-    static function showAuth()
+    static function showAuth($email)
     {
         $user = new UserModel();
-        $query = $user->authQuery();
+        $query = $user->authQuery($email);
 
         $result = $user->first($query);
 
         return $result;
     }
+
 
     public function showAll()
     {
@@ -29,15 +30,24 @@ class UserModel extends Model {
         return $result;
     }
 
-    //TODO сделать нормальную авторизацию
     /**
+     * @param $email
      * @return string
      */
-    public function authQuery()
+    public function authQuery($email)
     {
-        $sql = "SELECT * FROM " . $this->table;
+        $sql = "SELECT * FROM " . $this->table . " WHERE login='" . $email . "'";
 
         return $sql;
+    }
+
+    /**
+     * @param $args
+     * @return mixed
+     */
+    public function store($args)
+    {
+        return $this->storeToTable($this->table, $args);
     }
 
     /**
@@ -47,5 +57,14 @@ class UserModel extends Model {
     public function deleteById($id)
     {
       return $this->deleteFromTable($this->table, $id);
+    }
+
+    /**
+     * @param $id
+     * @param $args
+     */
+    public function update($id, $args)
+    {
+        return $this->updateForTable($this->table, $id, $args);
     }
 }

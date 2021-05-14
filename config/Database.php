@@ -51,4 +51,13 @@ class Database {
         $query->execute($params);
         return $query->fetch(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Берем последний вставленный id
+     * @return string
+     */
+    public function lastId()
+    {
+        return $this->connect->lastInsertId();
+    }
 }

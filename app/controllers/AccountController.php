@@ -7,6 +7,7 @@ use App\Model\AccountModel;
 use Core\ControllerInterface;
 use Core\View;
 use App\Model\UserModel;
+use App\Controller\AccessController;
 
 class AccountController extends Controller implements ControllerInterface {
     // каталог для загрузки юзерпиков
@@ -19,9 +20,13 @@ class AccountController extends Controller implements ControllerInterface {
      */
     public function show()
     {
-        $accounts = AccountModel::showAll();
+        if($_SESSION['sid']){header('Location: /home');}
 
-        View::render('index.php', ['accounts' => $accounts]);
+        else
+        {
+            $accounts = AccountModel::showAll();
+            View::render('index.php', ['accounts' => $accounts]);
+        }
     }
 
     /**
@@ -45,7 +50,7 @@ class AccountController extends Controller implements ControllerInterface {
      */
     public function edit()
     {
-        $id = $_GET['id'];
+        $id = $_SESSION['said'];
         $account = new AccountModel();
         $result = $account->getById($id);
 
@@ -78,31 +83,94 @@ class AccountController extends Controller implements ControllerInterface {
      */
     public function update()
     {
-        $id = $_POST['id'];
-
-        $args = [
-            'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
-        ];
-
-        if (isset($_FILES['userpic']))
-            $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
-            $args['userpic'] =  $userpic;
-
-
-        $args = [
-            'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
-            'userpic' => $userpic 
-        ];
-
+        $id = $_SESSION['said'];
+        $date = date('Y-m-d H:i:s');
+        $old_userpic = "/images/accounts/default.png";
         $account = new AccountModel();
 
-        if (strlen($account->getById($id)['userpic']) > 0) //если в базе есть старая картинка, удалить ее
-            $this->deleteImage($account->getById($id)['userpic']);
+        if (strlen($account->getById($id)['userpic']) > 0 and $account->getById($id)['userpic'] != "/images/accounts/default.png") //если в базе есть старая картинка, то поставить ее вместо дефолта
+            $old_userpic = $account->getById($id)['userpic'];
+
+        if (isset($_FILES['userpic']))
+        {
+            $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
+            if(strlen($userpic) > 0) $args['userpic'] = $userpic;
+            else $userpic = $old_userpic;
+        }
+
+        $args = [
+            'name' => $_POST['name'],
+            'surname' => $_POST['surname'],
+            'userpic' => $userpic,
+            'updated_at' => $date
+        ];
+
+        if (strlen($old_userpic) > 0 and $account->getById($id)['userpic'] != "/images/accounts/default.png" and $userpic != $old_userpic) //если в базе есть старая картинка, удалить ее
+            $this->deleteImage($old_userpic);
 
         $account->update($id, $args);
 
         View::render('crud_result/update_result.php', ['back_url' => '/']);
+    }
+
+    /**
+     * Регистрация нового акаунта
+     */
+    public function registration()
+    {
+        $userData = json_decode(file_get_contents('php://input'));
+        $date = date('Y-m-d H:i:s');
+
+        $user = new UserController();
+        $user_id = $user->registration();
+
+        if ($user_id != false)
+        {
+            $access_id= 1;
+            $args = [
+                'user_id' => $user_id,
+                'access_id' => $access_id,
+                'name' => $userData->name,
+                'created_at' => $date,
+                'updated_at' => $date,
+                'userpic' => "/images/accounts/default.png"
+            ];
+
+            $account = new AccountModel();
+            $account->store($args);
+
+            $user->newSession($user_id);
+            $this->newSession($account->getLastId());
+
+            $access = new AccessController();
+            $access->newSaccess($access_id);
+
+            echo true;
+        }
+
+        else{echo false;}
+    }
+
+    /**
+     * Берём аккаунт по user_id
+     *
+     * @param $user_id
+     * @return mixed
+     */
+    public function getAccount($user_id)
+    {
+        $account = new AccountModel();
+
+        return $account->getAccount($user_id);
+    }
+
+    /**
+     * Создание новой Сессии
+     *
+     * @param $id
+     */
+    public function newSession($id)
+    {
+        $_SESSION['said'] = $id;
     }
 }
