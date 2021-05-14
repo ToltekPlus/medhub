@@ -88,15 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 .catch((err) => console.error(err))
 
 
-	function redirect() {
-		if(operation[0]['redirect']){
-                	location = operation[0]['redirect'];
-		}
-	}
+            function redirect() {
+                if(operation[0]['redirect']){
+                            location = operation[0]['redirect'];
+                }
+            }
 
-	setTimeout(redirect, 1000);
-
-
+            setTimeout(redirect, 1000);
         });
     });
 });

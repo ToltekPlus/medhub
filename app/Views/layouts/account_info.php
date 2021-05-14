@@ -1,14 +1,26 @@
 <div class="account">
-    <img src="<?php echo $account_info['userpic']?>" alt="userpic">
+    <img src="<?=$account_info['userpic']?>" alt="userpic">
     <div class="account-info">
-        <?php echo $account_info['name'] . " " . $account_info['surname']?>
+        <?=$account_info['name'] . " " . $account_info['surname']?>
         <div class="account-level">
-            <?php echo $access_info['name_access']?>
+            <?=$access_info['name_access']?>
         </div>
     </div>
-    <div>
-        <a href="/account/edit">Edit</a>
-        <br>
-        <a href=/logout>Exit</a>
+    <div class="form-action">
+        <div>
+            <a href="/account/edit">
+                <svg class="svg-edit">
+                    <use xlink:href="#edit"></use>
+                </svg>
+            </a>
+        </div>
+
+        <div>
+            <a href=/logout>
+                <svg class="svg-logout">
+                    <use xlink:href="#logout"></use>
+                </svg>
+            </a>
+        </div>
     </div>
 </div>

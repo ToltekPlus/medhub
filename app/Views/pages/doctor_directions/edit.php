@@ -12,7 +12,7 @@
             <input type="hidden" name="id" value="<?=$_GET['id'] ?>" required>
             <label for="user">Наименование</label>
       <select name="user_id" id="user">
-        <<?php 
+        <?php
         foreach ($user as $key => $value) {
          echo '<option value="' . $key . '" ';
          if ($key == $doctor_directions->user){

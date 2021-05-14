@@ -21,7 +21,6 @@
                 </tr>
                 <?php
                     foreach ($directions_category as $key => $value) {
-                        //TODO category_id - брать из модели category(пока не готова)
                         echo
                             '<tr>
                                 <td class="form-control_edit">

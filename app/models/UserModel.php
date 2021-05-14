@@ -21,7 +21,9 @@ class UserModel extends Model {
         return $result;
     }
 
-
+    /**
+     * @return array
+     */
     public function showAll()
     {
         $user = new UserModel();

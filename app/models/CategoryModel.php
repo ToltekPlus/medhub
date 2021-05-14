@@ -51,7 +51,9 @@ class CategoryModel extends Model {
         return $this->deleteFromTable($this->table, $id);
     }
 
-
+    /**
+     * @return array
+     */
     public function get_all(){
         return $this->get($this->table);   
     }

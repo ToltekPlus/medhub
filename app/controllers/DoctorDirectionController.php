@@ -25,7 +25,6 @@ class DoctorDirectionController extends Controller
      */
     public function show()
     {
-
         $doctor_directions_model= new DirectionsCategoryModel();
         $result = $doctor_directions_model->showAll();
 
@@ -34,7 +33,6 @@ class DoctorDirectionController extends Controller
         foreach($result as $value){
              $doctor_directions[$value->id] = $value->name_direction;
         }
-
 
         $user_model= new UserModel();
         $result_user = $user_model->showAll();
@@ -45,7 +43,6 @@ class DoctorDirectionController extends Controller
         }
 
         View::render('pages/doctor_directions/add.php', ['doctor_directions' => $doctor_directions, 'user' => $user]);
-
     }
 
     /**
@@ -59,8 +56,6 @@ class DoctorDirectionController extends Controller
             'created_at' => date('Y-m-d H:i:s', time()),
             'updated_at' => date('Y-m-d H:i:s', time())
         ];
-
-        var_dump($args);
 
         $doctor_direction = new DoctorDirectionModel();
         $doctor_direction->store($args);
@@ -126,13 +121,14 @@ class DoctorDirectionController extends Controller
         View::render('pages/doctor_directions/warning.php', ['id' => $id]);
     }
 
+    /**
+     * удаление
+     */
     public function delete()
     {
         $id =  $_POST['id'];
 
         $doctor_direction = new DoctorDirectionModel();
         $doctor_direction->delete($id);
-
-        
     }
 }

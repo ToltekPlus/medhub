@@ -1,6 +1,8 @@
 <div class="block-left">
     <div class="logo"></div>
+
     <?php \Core\View::renderAccountInformation(); ?>
+
     <nav>
         <div class="block-left-navigation">
             <?php switch ($_SESSION['saccess'])

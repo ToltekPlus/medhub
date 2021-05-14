@@ -40,6 +40,15 @@ $router->add('account/update', ['controller' => 'AccountController', 'action' =>
 
 /*
 --------------------------------------------------------------------------
+Работа с уровнем доступа к аккаунту
+--------------------------------------------------------------------------
+*/
+$router->add('access-up', ['controller' => 'AccountController', 'action' => 'accessManager']);
+$router->add('access-up/up?{id}', ['controller' => 'AccountController', 'action' => 'accessUp']);
+$router->add('access-up/down?{id}', ['controller' => 'AccountController', 'action' => 'accessDown']);
+
+/*
+--------------------------------------------------------------------------
 Работа с уровнем доступа
 --------------------------------------------------------------------------
 */
@@ -52,9 +61,11 @@ $router->add('access/warning?{id}', ['controller' => 'AccessController', 'action
 $router->add('access/delete?{id}', ['controller' => 'AccessController', 'action' => 'delete']);
 
 
-
-
-
+/*
+--------------------------------------------------------------------------
+Работа с категориями врачей
+--------------------------------------------------------------------------
+*/
 $router->add('doctor_directions', ['controller' => 'DoctorDirectionController', 'action' => 'index']);
 $router->add('doctor_directions/add', ['controller' => 'DoctorDirectionController', 'action' => 'show']);
 $router->add('doctor_directions/store', ['controller' => 'DoctorDirectionController', 'action' => 'store']);
@@ -64,6 +75,11 @@ $router->add('doctor_directions/warning?{id}', ['controller' => 'DoctorDirection
 $router->add('doctor_directions/delete?{id}', ['controller' => 'DoctorDirectionController', 'action' => 'delete']);
 
 
+/*
+--------------------------------------------------------------------------
+Работа с подкатегориями
+--------------------------------------------------------------------------
+*/
 $router->add('directions_category', ['controller' => 'DirectionsCategoryController', 'action' => 'index']);
 $router->add('directions_category/add', ['controller' => 'DirectionsCategoryController', 'action' => 'show']);
 $router->add('directions_category/store', ['controller' => 'DirectionsCategoryController', 'action' => 'store']);
@@ -72,6 +88,11 @@ $router->add('directions_category/update', ['controller' => 'DirectionsCategoryC
 $router->add('directions_category/warning?{id}', ['controller' => 'DirectionsCategoryController', 'action' => 'warning']);
 $router->add('directions_category/delete?{id}', ['controller' => 'DirectionsCategoryController', 'action' => 'delete']);
 
+/*
+--------------------------------------------------------------------------
+Работа с категориями
+--------------------------------------------------------------------------
+*/
 $router->add('categories', ['controller' => 'CategoryController', 'action' => 'index']);
 $router->add('categories/add', ['controller' => 'CategoryController', 'action' => 'show']);
 $router->add('categories/store', ['controller' => 'CategoryController', 'action' => 'store']);
@@ -80,8 +101,5 @@ $router->add('categories/update', ['controller' => 'CategoryController', 'action
 $router->add('categories/warning?{id}', ['controller' => 'CategoryController', 'action' => 'warning']);
 $router->add('categories/delete?{id}', ['controller' => 'CategoryController', 'action' => 'delete']);
 
-// линк для примера. Использоваться не будет
-// TODO после изучения удалить
 $router->add('account/login?{id}', ['controller' => 'UserController', 'action' => 'getSession']);
-
 $router->dispatch($_SERVER['QUERY_STRING']);

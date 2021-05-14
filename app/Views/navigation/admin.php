@@ -1,5 +1,12 @@
 <ul>
     <li>
+        <a href="/access-up">
+            <svg class="svg-access">
+                <use xlink:href="#access"></use>
+            </svg>
+        </a>
+    </li>
+    <li>
         <a href="/accesses">
             <svg class="svg-access">
                 <use xlink:href="#access"></use>

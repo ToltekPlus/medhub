@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Handler\Controller;
+use App\Model\AccessModel;
 use App\Model\AccountModel;
 use Core\ControllerInterface;
 use Core\View;
 use App\Model\UserModel;
-use App\Controller\AccessController;
 
 class AccountController extends Controller implements ControllerInterface {
     // каталог для загрузки юзерпиков
@@ -172,5 +172,35 @@ class AccountController extends Controller implements ControllerInterface {
     public function newSession($id)
     {
         $_SESSION['said'] = $id;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function accessManager()
+    {
+        $accounts = AccountModel::showAll();
+
+        View::render('pages/accounts/index.php', ['accounts' => $accounts]);
+    }
+
+
+    public function accessUp()
+    {
+        // TODO: доделать уровень доступа вверх
+        $accesses = new AccessModel();
+        $accesses = $accesses->showAll();
+        asort($accesses);
+
+        $keys = array_keys($accesses);
+        $position = array_search($_GET['access_id'], $keys);
+        if (isset($keys[$position + 1])) {
+            $nextKey = $keys[$position + 1];
+        }
+    }
+
+    public function accessDown()
+    {
+        // TODO: доделать уровень доступа вниз
     }
 }

@@ -16,7 +16,9 @@ class DoctorDirectionModel extends Model {
         return $doctor_directionss->get($this->table);
     }
 
-
+    /**
+     * @return array
+     */
     public function getAll()
     {
         $model = new DoctorDirectionModel();

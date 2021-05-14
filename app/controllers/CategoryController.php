@@ -42,8 +42,6 @@ class CategoryController extends Controller
 
         $category = new CategoryModel();
         $category->store($args);
-
-        //View::render('crud_result/store_result.php', ['back_url' => '/']);
     }
 
     /**
@@ -71,8 +69,6 @@ class CategoryController extends Controller
 
         $account = new CategoryModel();
         $account->update($id, $args);
-
-        //View::render('crud_result/update_result.php', ['back_url' => '/']);
     }
 
     /**
@@ -85,13 +81,14 @@ class CategoryController extends Controller
         View::render('pages/categories/warning.php', ['id' => $id]);
     }
 
+    /**
+     * Удаление категории
+     */
     public function delete()
     {
         $id =  $_POST['id'];
 
         $category = new CategoryModel();
         $category->delete($id);
-
-        //View::render('crud_result/delete_result.php', ['back_url' => '/accesses']);
     }
 }

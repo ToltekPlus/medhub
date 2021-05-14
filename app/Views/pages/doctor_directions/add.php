@@ -12,20 +12,20 @@
 
   <label for="user_id">Наименование</label>
   <select id="user_id" name="user_id">
-<?php 
-foreach ($user as $key => $value) {
-    echo '<option value="' . $key . '">' . $value .'</option>';
-}
- ?>
+    <?php
+        foreach ($user as $key => $value) {
+            echo '<option value="' . $key . '">' . $value .'</option>';
+        }
+    ?>
   </select>
 
  <label for="direction_id">Направление</label>
   <select name="direction_id" id="direction_id"> 
-<?php 
-foreach ($doctor_directions as $key => $value) {
-    echo '<option value="' . $key . '">' . $value .'</option>';
-}
- ?>
+    <?php
+        foreach ($doctor_directions as $key => $value) {
+            echo '<option value="' . $key . '">' . $value .'</option>';
+        }
+    ?>
   </select>
   <button class="button-primary" type="submit">Добавить</button>
     </form>
