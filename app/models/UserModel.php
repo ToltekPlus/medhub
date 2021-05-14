@@ -21,6 +21,15 @@ class UserModel extends Model {
         return $result;
     }
 
+
+    public function showAll()
+    {
+        $user = new UserModel();
+        $result = $user->get($this->table);
+
+        return $result;
+    }
+
     /**
      * @param $email
      * @return string
