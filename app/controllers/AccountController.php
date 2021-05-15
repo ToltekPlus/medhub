@@ -184,23 +184,53 @@ class AccountController extends Controller implements ControllerInterface {
         View::render('pages/accounts/index.php', ['accounts' => $accounts]);
     }
 
-
+    /**
+     * Повышение уровня доступа
+     *
+     * @throws \Exception
+     */
     public function accessUp()
     {
-        // TODO: доделать уровень доступа вверх
         $accesses = new AccessModel();
         $accesses = $accesses->showAll();
-        asort($accesses);
 
-        $keys = array_keys($accesses);
-        $position = array_search($_GET['access_id'], $keys);
-        if (isset($keys[$position + 1])) {
-            $nextKey = $keys[$position + 1];
+        $position = array_search((int)$_GET['access_id'], array_column($accesses, 'id'));
+        if (!is_null($accesses[$position + 1])) {
+            $args = [
+                'access_id' => (int)$position + 2
+            ];
+
+            $account = new AccountModel();
+            $account->update($_GET['account_id'], $args);
+            View::render('crud_result/update_result.php', ['back_url' => '/access-up']);
+        }else {
+            View::render('crud_result/error.php', ['back_url' => '/access-up']);
         }
     }
 
+    /**
+     * Повышение уровня доступа
+     *
+     * @throws \Exception
+     */
     public function accessDown()
     {
-        // TODO: доделать уровень доступа вниз
+        $accesses = new AccessModel();
+        $accesses = $accesses->showAll();
+
+        $position = array_search((int)$_GET['access_id'], array_column($accesses, 'id'));
+        if (!is_null($accesses[$position - 1])) {
+            $args = [
+                'access_id' => (int)$position
+            ];
+
+            $account = new AccountModel();
+            $account->update($_GET['account_id'], $args);
+            View::render('crud_result/update_result.php', ['back_url' => '/access-up']);
+        }else {
+            View::render('crud_result/error.php', ['back_url' => '/access-up']);
+        }
     }
+
+    //TODO: снижение уровня доступа для сессии
 }

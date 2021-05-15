@@ -67,8 +67,8 @@ class AccessController extends Controller
             'level_access' => $_POST['level_access']
         ];
 
-        $account = new AccessModel();
-        $account->update($id, $args);
+        $access = new AccessModel();
+        $access->update($id, $args);
     }
 
     /**

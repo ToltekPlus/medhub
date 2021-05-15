@@ -15,11 +15,11 @@
                         echo
                             '<tr>
                                 <td class="form-control_edit">
-                                    <a href=access-up/up?access_id=' . $value->access_id .'>
+                                    <a href=access-up/up?access_id=' . $value->access_id .'&account_id='. $value->account_key .'>
                                         &#9650;
                                     </a>
                                     
-                                    <a href=access-up/down?access_id=' . $value->access_id .'>
+                                    <a href=access-up/down?access_id=' . $value->access_id .'&account_id='. $value->account_key .'>
                                         &#9660;
                                     </a>
                                 </td>
