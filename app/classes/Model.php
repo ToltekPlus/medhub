@@ -113,7 +113,12 @@ abstract class Model {
         return $sql;
     }
 
-
+    /**
+     * @param $id
+     * @param $table
+     * @param $params
+     * @return string
+     */
     public function sctucturefindById($id, $table, $params)
     {
         $where = '';
@@ -182,7 +187,6 @@ abstract class Model {
     public function updateForTable($table, $id, $args)
     {
         $sql = $this->structureQueryForUpdate($id, $table, $args);
-
         $this->db->execute($sql, $args);
     }
 
@@ -194,7 +198,6 @@ abstract class Model {
      * @param $fields
      * @return string
      */
-    //TODO проверить правильность обновления
     public function structureQueryForUpdate($id, $table, $fields)
     {
         $set = ' SET ';
@@ -222,7 +225,6 @@ abstract class Model {
     public function storeToTable($table, $args)
     {
         $sql = $this->structureQueryForStore($table, $args);
-
         $this->db->execute($sql, $args);
     }
 
@@ -253,6 +255,7 @@ abstract class Model {
         $sql = 'INSERT INTO ' . $table . " (" .$set . ") VALUES (" . $values . ")";
         return $sql;
     }
+
 
     /**
      * Берем последний вставленный id

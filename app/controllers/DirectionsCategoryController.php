@@ -52,8 +52,6 @@ class DirectionsCategoryController extends Controller
 
         $model = new DirectionsCategoryModel();
         $model->store($args);
-
-        //View::render('crud_result/store_result.php', ['back_url' => '/']);
     }
 
     /**
@@ -61,7 +59,6 @@ class DirectionsCategoryController extends Controller
      */
     public function edit()
     {
-
         $category_model = new CategoryModel();
 
         $result_category = $category_model->get_all();
@@ -79,9 +76,9 @@ class DirectionsCategoryController extends Controller
         View::render('pages/directions_category/edit.php', ['directions_category' => $result, 'category' => $category]);
     }
 
-    // *
-    //  * @throws \Exception
-     
+    /**
+     * обновление
+     */
     public function update()
     {
         $id = $_POST['id'];
@@ -95,8 +92,6 @@ class DirectionsCategoryController extends Controller
 
         $model = new DirectionsCategoryModel();
         $model->update($id, $args);
-
-        //View::render('crud_result/update_result.php', ['back_url' => '/']);
     }
 
     /**
@@ -109,13 +104,14 @@ class DirectionsCategoryController extends Controller
         View::render('pages/accesses/warning.php', ['id' => $id]);
     }
 
+    /**
+     * удаление
+     */
     public function delete()
     {
         $id =  $_POST['id'];
 
         $model = new DirectionsCategoryModel();
         $model->delete($id);
-
-        //View::render('crud_result/delete_result.php', ['back_url' => '/accesses']);
     }
 }

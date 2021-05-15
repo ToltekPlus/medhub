@@ -4,16 +4,42 @@ namespace App\Model;
 
 use App\Handler\Model;
 
-class CategoryModel extends Model {
-    private $table = 'categories';
+class DoctorDirectionModel extends Model {
+    private $table = 'doctor_directions';
 
     /**
      * @return array
      */
     public function showAll()
     {
-        $categories = new CategoryModel();
-        return $categories->get($this->table);
+        $doctor_directionss = new DoctorDirectionModel();
+        return $doctor_directionss->get($this->table);
+    }
+
+    /**
+     * @return array
+     */
+    public function getAll()
+    {
+        $model = new DoctorDirectionModel();
+
+        $params1 = [
+            'table' => 'users',
+            'foreign_key' => 'user_id'
+        ];
+
+          $params2 = [
+            'table' => 'directions_category',
+            'foreign_key' => 'direction_id'
+        ];
+
+        $params = array($params1, $params2);
+
+        $sql = $model->sctuctureQuery($this->table, $params,'id',' '); 
+
+        $result = $this->db->query($sql);
+
+        return $result;     
     }
 
     /**
@@ -49,12 +75,5 @@ class CategoryModel extends Model {
     public function delete($id)
     {
         return $this->deleteFromTable($this->table, $id);
-    }
-
-    /**
-     * @return array
-     */
-    public function get_all(){
-        return $this->get($this->table);   
     }
 }

@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Handler\Controller;
 use App\Model\UserModel;
-use App\Controller\AccessController;
-use App\Controller\AccountController;
 
 class UserController extends Controller {
     /**
@@ -65,7 +63,6 @@ class UserController extends Controller {
 
     /**
      * якобы передача сессии
-     * TODO после метод удалить
      */
     public function getSession()
     {

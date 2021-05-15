@@ -12,6 +12,10 @@
     width: 16px;
     height: 16px;
 }
+.svg-access:hover {
+    fill: black;
+    cursor: pointer;
+}
 
 .svg-delete {
     fill: darkred;
@@ -19,5 +23,14 @@
     height: 24px;
 }
 .svg-delete:hover {
+    fill: black;
+}
+
+.svg-logout {
+    fill: black;
+    width: 16px;
+    height: 16px;
+}
+.svg-logout:hover {
     fill: black;
 }

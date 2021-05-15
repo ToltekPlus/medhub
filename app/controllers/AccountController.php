@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Handler\Controller;
+use App\Model\AccessModel;
 use App\Model\AccountModel;
 use Core\ControllerInterface;
 use Core\View;
 use App\Model\UserModel;
-use App\Controller\AccessController;
 
 class AccountController extends Controller implements ControllerInterface {
     // каталог для загрузки юзерпиков
@@ -50,7 +50,7 @@ class AccountController extends Controller implements ControllerInterface {
      */
     public function edit()
     {
-        $id = $_GET['id'];
+        $id = $_SESSION['said'];
         $account = new AccountModel();
         $result = $account->getById($id);
 
@@ -84,27 +84,29 @@ class AccountController extends Controller implements ControllerInterface {
     public function update()
     {
         $id = $_SESSION['said'];
-
-        $args = [
-            'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
-        ];
-
-        if (isset($_FILES['userpic']))
-            $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
-            $args['userpic'] =  $userpic;
-
-
-        $args = [
-            'name' => $_POST['name'],
-            'surname' => $_POST['surname'],
-            'userpic' => $userpic
-        ];
-
+        $date = date('Y-m-d H:i:s');
+        $old_userpic = "/images/accounts/default.png";
         $account = new AccountModel();
 
-        if (strlen($account->getById($id)['userpic']) > 0) //если в базе есть старая картинка, удалить ее
-            $this->deleteImage($account->getById($id)['userpic']);
+        if (strlen($account->getById($id)['userpic']) > 0 and $account->getById($id)['userpic'] != "/images/accounts/default.png") //если в базе есть старая картинка, то поставить ее вместо дефолта
+            $old_userpic = $account->getById($id)['userpic'];
+
+        if (isset($_FILES['userpic']))
+        {
+            $userpic = $this->uploadImage($_FILES['userpic'], $this->img_path);
+            if(strlen($userpic) > 0) $args['userpic'] = $userpic;
+            else $userpic = $old_userpic;
+        }
+
+        $args = [
+            'name' => $_POST['name'],
+            'surname' => $_POST['surname'],
+            'userpic' => $userpic,
+            'updated_at' => $date
+        ];
+
+        if (strlen($old_userpic) > 0 and $account->getById($id)['userpic'] != "/images/accounts/default.png" and $userpic != $old_userpic) //если в базе есть старая картинка, удалить ее
+            $this->deleteImage($old_userpic);
 
         $account->update($id, $args);
 
@@ -131,7 +133,7 @@ class AccountController extends Controller implements ControllerInterface {
                 'name' => $userData->name,
                 'created_at' => $date,
                 'updated_at' => $date,
-                'userpic' => "images/accounts/default.png"
+                'userpic' => "/images/accounts/default.png"
             ];
 
             $account = new AccountModel();
@@ -170,5 +172,35 @@ class AccountController extends Controller implements ControllerInterface {
     public function newSession($id)
     {
         $_SESSION['said'] = $id;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function accessManager()
+    {
+        $accounts = AccountModel::showAll();
+
+        View::render('pages/accounts/index.php', ['accounts' => $accounts]);
+    }
+
+
+    public function accessUp()
+    {
+        // TODO: доделать уровень доступа вверх
+        $accesses = new AccessModel();
+        $accesses = $accesses->showAll();
+        asort($accesses);
+
+        $keys = array_keys($accesses);
+        $position = array_search($_GET['access_id'], $keys);
+        if (isset($keys[$position + 1])) {
+            $nextKey = $keys[$position + 1];
+        }
+    }
+
+    public function accessDown()
+    {
+        // TODO: доделать уровень доступа вниз
     }
 }

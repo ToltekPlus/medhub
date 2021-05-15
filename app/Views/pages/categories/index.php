@@ -1,10 +1,10 @@
 <?php \Core\View::renderHeader(); ?>
 
 <div class="block-right">
-    <h1>Направление категории</h1>
+    <h1>Категории</h1>
 
     <div class="add-link">
-        <a href='directions_category/add'>Добавить направление категории</a>
+        <a href='categories/add'>Добавить уровень</a>
     </div>
 
     <div class="dashboard-form">
@@ -13,30 +13,26 @@
                 <tr>
                     <th></th>
                     <th>Категория</th>
-                    <th>Направление</th>
-                    <th>Цена</th>
                     <th>Добавлено</th>
                     <th>Изменено</th>
                     <th></th>
                 </tr>
                 <?php
-                    foreach ($directions_category as $key => $value) {
+                    foreach ($categories as $key => $value) {
                         echo
                             '<tr>
                                 <td class="form-control_edit">
-                                    <a href=directions_category/edit?id=' . $value->id .'>
+                                    <a href=categories/edit?id=' . $value->id .'>
                                         <svg class="svg-edit">
                                             <use xlink:href="#edit"></use>
                                         </svg>
                                     </a>
                                 </td>
                                 <td>' . $value->name_category . '</td>
-                                <td>' . $value->name_direction . '</td>
-                                <td>' . $value->price . '</td>
                                 <td>' . $value->created_at . '</td>
                                 <td>' . $value->updated_at . '</td>
                                 <td>
-                                    <a href=directions_category/warning?id=' . $value->id .'>
+                                    <a href=categories/warning?id=' . $value->id .'>
                                         <svg class="svg-delete">
                                             <use xlink:href="#delete"></use>
                                         </svg>
@@ -44,7 +40,6 @@
                                 </td>
                           </tr>';
                     }
-
                 ?>
             </thead>
         </table>

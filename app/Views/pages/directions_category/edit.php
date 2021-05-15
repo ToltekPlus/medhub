@@ -10,7 +10,7 @@
     <div class="dashboard-form">
         <form method="POST">
 
-            <input type="hidden" name="id" value=" <?php echo $directions_category->id ?> " required>
+            <input type="hidden" name="id" value=" <?=$directions_category->id ?> " required>
 
             <label for="category_id">Категория</label>
             <select name="category_id" id="category_id">

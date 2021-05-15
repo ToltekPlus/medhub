@@ -1,7 +1,5 @@
 <?php \Core\View::renderHeader(); ?>
 
-<!--TODO: CATEGORI ID ЧЕРЕЗ ВЫПАДАЮЩИЙ СПИСОК-->
-
 <div class="block-right">
     <h1>Направление категории</h1>
 
