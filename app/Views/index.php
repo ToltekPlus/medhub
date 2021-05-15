@@ -6,7 +6,7 @@
         <!-- Milligram CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
         <!-- My CSS -->
-        <link rel="stylesheet" href="<? echo "/styles/main.css";?>">
+        <link rel="stylesheet" href="<?="/styles/min.css";?>">
     </head>
     <body>
         <div class="main-auth">
@@ -51,7 +51,7 @@
             </div>
             </div>
         </div>
-      <script src="/scripts/login.js"></script>
+      <script src="/scripts/login_min.js"></script>
       <script src="/scripts/registration.js"></script>
     </body>
 </html>
