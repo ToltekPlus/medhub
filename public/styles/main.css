@@ -70,6 +70,7 @@ nav ul {
     font-size: 0.75em;
     text-transform: none;
     letter-spacing: 0;
+    cursor: pointer;
 }
 .auth,
 .reg {

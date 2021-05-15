@@ -2,7 +2,7 @@
     <li>
         <a href="/access-up">
             <svg class="svg-access">
-                <use xlink:href="#access"></use>
+                <use xlink:href="#leveling"></use>
             </svg>
         </a>
     </li>
@@ -16,8 +16,8 @@
     <li>
     	<a href="/doctor_directions">
 			<svg class ="svg-access">
-			 <use xlink:href="#access"></use>
-			</svg>    	
+			 <use xlink:href="#path"></use>
+			</svg>
     	</a>
     </li>
     <li>
@@ -30,7 +30,7 @@
 <li>
         <a href="/categories">
             <svg class="svg-access">
-                <use xlink:href="#access"></use>
+                <use xlink:href="#category"></use>
             </svg>
         </a>
     </li>
