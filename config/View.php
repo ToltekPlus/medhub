@@ -2,6 +2,9 @@
 
 namespace Core;
 
+use App\Model\AccountModel;
+use App\Model\AccessModel;
+
 class View {
     /**
      * рендерим хедер
@@ -45,5 +48,20 @@ class View {
         }else {
             throw new \Exception("$file не найден");
         }
+    }
+
+    /**
+     * Рендеринг данных об аккаунте
+     *
+     * @throws \Exception
+     */
+    public static function renderAccountInformation()
+    {
+        $account = new AccountModel();
+        $account_info = $account->getById($_SESSION['said']);
+        $access = new AccessModel();
+        $access_info = $access->getById($account_info['access_id']);
+
+        self::render('layouts/account_info.php', ['access_info' => $access_info, 'account_info' => $account_info]);
     }
 }

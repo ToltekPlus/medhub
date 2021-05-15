@@ -22,6 +22,17 @@ class UserModel extends Model {
     }
 
     /**
+     * @return array
+     */
+    public function showAll()
+    {
+        $user = new UserModel();
+        $result = $user->get($this->table);
+
+        return $result;
+    }
+
+    /**
      * @param $email
      * @return string
      */
@@ -48,5 +59,14 @@ class UserModel extends Model {
     public function deleteById($id)
     {
       return $this->deleteFromTable($this->table, $id);
+    }
+
+    /**
+     * @param $id
+     * @param $args
+     */
+    public function update($id, $args)
+    {
+        return $this->updateForTable($this->table, $id, $args);
     }
 }

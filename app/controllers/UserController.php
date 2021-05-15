@@ -8,21 +8,33 @@ use App\Model\UserModel;
 class UserController extends Controller {
     /**
      * Авторизация(проверка пароля)
+     *
+     * @return bool
      */
     public function auth()
     {
-        $email = $_POST['email'];
-        $password = md5($_POST['password']);
+        $userData = json_decode(file_get_contents('php://input'));
+
+        $email = $userData->email;
+        $password = md5($userData->pass);
         $result = false;
 
         $user = UserModel::showAuth($email);
         if($password == $user->password)
         {
             $this->newSession($user->id);
+
+            $account = new AccountController();
+            $access_id = $account->getAccount($user->id)->access_id;
+            $account->newSession($account->getAccount($user->id)->id);
+
+            $access = new AccessController();
+            $access->newSaccess($access_id);
+
             $result = true;
         }
-        return $result;
 
+        echo $result;
     }
 
     /**
@@ -31,16 +43,17 @@ class UserController extends Controller {
      */
     static function registration()
     {
+        $userData = json_decode(file_get_contents('php://input'));
         $date = date('Y-m-d H:i:s');
         $args = [
-            'login' => $_POST['new-email'],
-            'password' => md5($_POST['new-password']),
+            'login' => $userData->email,
+            'password' => md5($userData->pass),
             'created_at' => $date,
             'updated_at' => $date
         ];
 
         $user = new UserModel();
-        if($user->authQuery($_POST['new-email']) != NONE)
+        if(!$user->showAuth($userData->email))
         {
             $user->store($args);
             return $user->getLastId();
@@ -50,7 +63,6 @@ class UserController extends Controller {
 
     /**
      * якобы передача сессии
-     * TODO после метод удалить
      */
     public function getSession()
     {
@@ -74,5 +86,25 @@ class UserController extends Controller {
     public function logout()
     {
         parent::logout();
+    }
+
+    /**
+     * Обновление в таблице по id
+     *
+     * @throws \Exception
+     */
+    public function update()
+    {
+        $id = $_SESSION['sid'];
+
+        $args = [
+            'password' => md5($_POST['password'])
+        ];
+
+        $user = new UserModel();
+
+        $user->update($id, $args);
+
+        View::render('crud_result/update_result.php', ['back_url' => '/']);
     }
 }

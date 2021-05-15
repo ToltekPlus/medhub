@@ -68,10 +68,6 @@ function loginCheck(){
   if(checkLogEmail()!=false){
     if(checkLogPass()!=false){
       //при true true
-      showError({
-          html: 'Проверка!',
-          color: '#33e019',
-              });
 
       let userData =
       {
@@ -110,10 +106,6 @@ function registerCheck(){
   color: '#c93434',
 });}
 if(checkRegPass()&&checkRegName()&&checkRegEmail()!=false){
-  showError({
-      html: 'Проверка!',
-      color: '#33e019',
-          });
 
   let userData =
   {
@@ -129,24 +121,29 @@ if(checkRegPass()&&checkRegName()&&checkRegEmail()!=false){
 }
 
 function asyncData(userData) {
-
-      const dataSend = async(userData) => {
+    const dataSend = async (userData) => {
           const fetchResp = await fetch(userData.path, {
               method: 'POST',
-              body: userData
+              body: JSON.stringify(userData)
           });
-          return await fetchResp.text();
-
-}
+        return await fetchResp.text();}
 
 dataSend(userData)
     .then((response) => {
-      //checkResponse(response);
-      console.log(response)
-      console.log('redirection')
+      checkResponse(response);
     })
-    .catch((e) => {console.log(e)});
 }
 
-//function checkResponse(response){
-//if(response==true){location.href='/home'}
+function checkResponse(response) {
+    if (response == true) {
+        location.href = '/home'
+    }
+    else
+    {
+        showError({
+            html: 'Неверные данные!',
+            color: '#c93434',
+        });
+    }
+}
+

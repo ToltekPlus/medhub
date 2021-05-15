@@ -39,8 +39,6 @@ class AccessController extends Controller
 
         $access = new AccessModel();
         $access->store($args);
-
-        //View::render('crud_result/store_result.php', ['back_url' => '/']);
     }
 
     /**
@@ -52,7 +50,9 @@ class AccessController extends Controller
         $access = new AccessModel();
         $result = $access->getById($id);
 
-        View::render('pages/accesses/edit.php', ['access' => $result]);
+        $accesses = $access->showAll();
+
+        View::render('pages/accesses/edit.php', ['access' => $result, 'accesses' => $accesses]);
     }
 
     /**
@@ -67,10 +67,8 @@ class AccessController extends Controller
             'level_access' => $_POST['level_access']
         ];
 
-        $account = new AccessModel();
-        $account->update($id, $args);
-
-        //View::render('crud_result/update_result.php', ['back_url' => '/']);
+        $access = new AccessModel();
+        $access->update($id, $args);
     }
 
     /**
@@ -89,7 +87,17 @@ class AccessController extends Controller
 
         $access = new AccessModel();
         $access->delete($id);
+    }
 
-        //View::render('crud_result/delete_result.php', ['back_url' => '/accesses']);
+    /**
+     * Создание сессии для access_level
+     *
+     * @param $id
+     */
+    public function newSaccess($id)
+    {
+        $access = new AccessModel();
+
+        $_SESSION['saccess'] = $access->getById($id)['level_access'];
     }
 }
