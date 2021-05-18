@@ -9,6 +9,7 @@
                 <tr>
                     <th></th>
                     <th>Пользователь</th>
+                    <th>Изменить пароль</th>
                 </tr>
                 <?php
                     foreach ($accounts as $key => $value) {
@@ -24,6 +25,7 @@
                                     </a>
                                 </td>
                                 <td>' . $value->name . ' ' . $value->surname . ' | <strong>' . $value->name_access . '</strong></td>
+                                <td><a href="change-password?user_id='.$value->user_id.'">Сменить пароль</a></td>
                           </tr>';
                     }
                 ?>

@@ -209,7 +209,7 @@ class AccountController extends Controller implements ControllerInterface {
     }
 
     /**
-     * Повышение уровня доступа
+     * Понижение уровня доступа
      *
      * @throws \Exception
      */
@@ -232,5 +232,22 @@ class AccountController extends Controller implements ControllerInterface {
         }
     }
 
-    //TODO: снижение уровня доступа для сессии
+    /**
+     * Изменение пароля
+     *
+     * @throws \Exception
+     */
+    public function changePassword()
+    {
+        $chars = "qazxswedcvfrtgbnhyujmkiolp1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP";
+        $max = 8;
+        $size = StrLen($chars) - 1;
+        $password = null;
+        while($max--) $password .= $chars[rand(0,$size)];
+
+        $user = new UserModel();
+        $user->update($_GET['user_id'], ['password' => md5($password)]);
+
+        View::render('pages/accounts/update-password_result.php', ['back_url' => '/', 'password' => $password]);
+    }
 }
