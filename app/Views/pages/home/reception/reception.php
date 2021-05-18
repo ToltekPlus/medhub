@@ -2,7 +2,7 @@
 \Core\View::renderHeader();?>
 
 
-    <div class="colors"><div>
+    <div class="block-right"> Запись на приём <div>
     <div class="content"><img src="">
         <div class="Window">Услуги
             <div class="timedate">
@@ -32,6 +32,8 @@
                 </form>
             </div>
         </div>
+        <a class="button-primary" href="/home">Вернутся на главную</a>
+    </div>
     </div>
 
 
