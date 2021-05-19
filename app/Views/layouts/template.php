@@ -1,5 +1,9 @@
 <div class="block-left">
-    <div class="logo"></div>
+    <div class="logo">
+        <a href="/">
+            <img src="images/logo.png" alt="logo">
+        </a>
+    </div>
 
     <?php \Core\View::renderAccountInformation(); ?>
 

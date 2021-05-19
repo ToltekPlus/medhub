@@ -13,6 +13,9 @@
             <div class="block-bg-image"></div>
             <div class="block-auth-form">
                 <div class="form-control">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="logo">
+                    </div>
                   <h3>Добро пожаловать <br> к «Врачевателю»</h3>
 
                   <div id="erdiv">
