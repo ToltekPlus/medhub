@@ -46,6 +46,7 @@ $router->add('account/update', ['controller' => 'AccountController', 'action' =>
 $router->add('access-up', ['controller' => 'AccountController', 'action' => 'accessManager']);
 $router->add('access-up/up?{id}', ['controller' => 'AccountController', 'action' => 'accessUp']);
 $router->add('access-up/down?{id}', ['controller' => 'AccountController', 'action' => 'accessDown']);
+$router->add('change-password', ['controller' => 'AccountController', 'action' => 'changePassword']);
 
 /*
 --------------------------------------------------------------------------
