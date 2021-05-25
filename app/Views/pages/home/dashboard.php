@@ -1,32 +1,31 @@
-<div class="dashboard">
-    <h1>Рассписание на сегодня</h1>
+<?php \Core\View::renderHeader(); ?>
+    <div class="block-right">
+        <div class="dashboard">
+            <h1>Рассписание на сегодня</h1>
+            <div class="dashboard-form">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Клиент</th>
+                        <th>Лечащий врач</th>
+                        <th>Время</th>
+                        <th>Номер</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach ($dashboard as $key => $value){
+                        echo '<tr>' . '<th>' . $value->name . ' ' . $value->surname . '</th>'
+                            . '<th>' . 'Врач'
+                            . '<th>' . $value->time_of_visit . '</th>'
+                            . '<th>' . $value->client_id .'</th>' . '</tr>';
+                    }
+                    ?>
+                    </tbody>
+                </table>
 
-    <div class="dashboard-form">
-        <table>
-            <thead>
-            <tr>
-                <th>Клиент</th>
-                <th>Направление</th>
-                <th>Время</th>
-                <th>Номер</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Stephen Curry</td>
-                <td>Травматология</td>
-                <td>10:45</td>
-                <td>100547</td>
-            </tr>
-            <tr>
-                <td>Klay Thompson</td>
-                <td>Инфекционист</td>
-                <td>11:15</td>
-                <td>100548</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <a class="button-primary" href="">Записать на прием</a>
+                <a class="button-primary" href="/home/reception">Записать на прием</a>
+            </div>
+        </div>
     </div>
-</div>
+<?php \Core\View::renderFooter(); ?>

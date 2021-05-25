@@ -105,7 +105,7 @@ abstract class Model {
 
         if(strlen(str_replace(' ', '', $table_key)))
         $table_as = ' AS ' . $table_key;
-        else 
+        else
         $table_as = ' ';
 
         $sql = "SELECT *, " . $table . ".id" . $table_as . " FROM " . $selected_tables . $where;
@@ -187,6 +187,7 @@ abstract class Model {
     public function updateForTable($table, $id, $args)
     {
         $sql = $this->structureQueryForUpdate($id, $table, $args);
+
         $this->db->execute($sql, $args);
     }
 
@@ -198,6 +199,7 @@ abstract class Model {
      * @param $fields
      * @return string
      */
+    //TODO проверить правильность обновления
     public function structureQueryForUpdate($id, $table, $fields)
     {
         $set = ' SET ';
@@ -225,6 +227,7 @@ abstract class Model {
     public function storeToTable($table, $args)
     {
         $sql = $this->structureQueryForStore($table, $args);
+
         $this->db->execute($sql, $args);
     }
 
@@ -253,6 +256,66 @@ abstract class Model {
         }
 
         $sql = 'INSERT INTO ' . $table . " (" .$set . ") VALUES (" . $values . ")";
+
+        return $sql;
+    }
+
+    /**
+     * показать данные которые связаны с докторами
+     *
+     * @param $table
+     * @param $params
+     * @param $group_key
+     * @param $table_key
+     * @return array
+     */
+
+    public function allReception($table, $params, $group_key, $table_key){
+        $sql = $this->structureQueryForReception($table, $params, $group_key, $table_key);
+
+        $result = $this->db->query($sql);
+
+        return $result;
+    }
+
+    /**
+     *
+     * по сути делаем тоже что и в методе выше(sctuctureQuery), то-есть состовляем sql запрос,
+     * но при этом делаем выборку по докторам через access_id и doctor_directions.user_id
+     * @param $table
+     * @param $params
+     * @param $group_key
+     * @param $table_key
+     * @return string
+     */
+
+    public function structureQueryForReception($table, $params, $group_key, $table_key){
+        $where = '';
+        $selected_tables = $table;
+        $count = count($params);
+        $group_length = strlen(str_replace(' ', '', $group_key));
+        if ($group_length == 0) {
+            $group_key = 'id';
+        }
+
+        if ($count > 0) {
+            $where = ' WHERE ';
+            foreach ($params as $key => $value) {
+                $selected_tables = $selected_tables . ', ' . $value['table'];
+                if ($key == $count-1) {
+                    $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table'] . '.id ';
+                }else {
+                    $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table'] . '.id AND ';
+
+                    $select = ' AND ' . $table . '.' . $value['foreign_key'] . ' = ' . $value['table'] . '.' . $value['foreign_key'];
+                }
+            }
+            $select = ' AND ' . $table . '.' . $value['foreign_key'] . ' = ' . $value['table'] . '.' . $value['foreign_key'];
+
+            $where .= ' AND ' . ' access_id = 2 ' . $select . ' GROUP BY ' . $table. '.' . $group_key;
+        }
+        $sql = "SELECT *, " . $table . ".id AS " . $table_key . " FROM " . $selected_tables . $where;
+
         return $sql;
     }
 

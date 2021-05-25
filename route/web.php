@@ -17,13 +17,15 @@ $router = new Router();
 --------------------------------------------------------------------------
 */
 $router->add('', ['controller' => 'AccountController', 'action' => 'show']);
+$router->add('home', ['controller' => 'DashboardController', 'action' => 'show']);
+$router->add('home/reception', ['controller' => 'DashboardController', 'action' => 'reception']);
 
 /*
 --------------------------------------------------------------------------
 Работа с авторизацией/регистрацией
 --------------------------------------------------------------------------
 */
-$router->add('home', ['controller' => 'HomeController', 'action' => 'index']);
+//$router->add('home', ['controller' => 'HomeController', 'action' => 'index']);
 $router->add('logout', ['controller' => 'UserController', 'action' => 'logout']);
 $router->add('login', ['controller' => 'UserController', 'action' => 'auth']);
 $router->add('registration', ['controller' => 'AccountController', 'action' => 'registration']);

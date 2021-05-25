@@ -127,7 +127,7 @@ nav ul {
 .account img {
     width: 100%;
     text-align: center;
-    border-radius: 5%;
+    border-radius: 50%;
 }
 .account-info {
     margin: 8px 0 0 0;
@@ -199,9 +199,19 @@ h3 {
 
 .none{
   display:none !important;
+.content{
+    max-width: 50%;
+    background-color: white;
+    box-shadow: 2px 0 8px 0 rgb(0 0 0 / 10%);
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 0.75em;
+    display: flex;
 }
 
-
+.Window{
+    padding: 10px;
+}
 
 @keyframes bounceIn {
     0% {
