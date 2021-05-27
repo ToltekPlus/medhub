@@ -225,3 +225,9 @@ h3 {
         transform: scale(1);
     }
 }
+
+.receipt{
+    border-radius: 5px;
+    width: 70%;
+    background-color: orange;
+}

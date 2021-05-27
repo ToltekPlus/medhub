@@ -20,8 +20,8 @@ class DashboardModel extends Model{
 
         $pivot_table = [
             [
-                'table' => 'accounts',
-                'foreign_key' => 'user_id'
+                'table' => 'users',
+                'foreign_key' => 'client_id'
             ],
             [
                 'table' => 'directions_category',
@@ -54,6 +54,22 @@ class DashboardModel extends Model{
         return $dashboard->allReception($dashboard->query_for_reception(), $mass , '', 'dashboard_key');
     }
 
+    static function receipt()
+    {
+        $recept = new DashboardModel();
+
+        $array = [
+            [
+                'table' => '',
+                'foreign_key' => ''
+            ],
+            [
+                'table' => '',
+                'foreign_key' => ''
+            ]
+        ];
+        return $array->all($recept->query(), $array , '', 'dashboard_key');
+    }
 
     /**
      * возвращаем таблицу для статичного метода(showAll)

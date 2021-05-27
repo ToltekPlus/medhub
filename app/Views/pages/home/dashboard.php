@@ -10,6 +10,7 @@
                         <th>Лечащий врач</th>
                         <th>Время</th>
                         <th>Номер</th>
+                        <th>Чек</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -18,7 +19,8 @@
                         echo '<tr>' . '<th>' . $value->name . ' ' . $value->surname . '</th>'
                             . '<th>' . 'Врач'
                             . '<th>' . $value->time_of_visit . '</th>'
-                            . '<th>' . $value->client_id .'</th>' . '</tr>';
+                            . '<th>' . $value->client_id .'</th>'
+                            . '<th><a href="/home/receipt">Показать чек</a></th>' . '</tr>';
                     }
                     ?>
                     </tbody>
