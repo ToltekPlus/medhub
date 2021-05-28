@@ -20,11 +20,11 @@ class DashboardModel extends Model{
 
         $pivot_table = [
             [
-                'table' => 'accounts',
-                'foreign_key' => 'user_id'
+                'table' => 'users',
+                'foreign_key' => 'client_id'
             ],
             [
-                'table' => 'directions_category',
+                'table' => 'doctor_directions',
                 'foreign_key' => 'doctor_direction_id'
             ]
         ];
@@ -54,7 +54,6 @@ class DashboardModel extends Model{
         return $dashboard->allReception($dashboard->query_for_reception(), $mass , '', 'dashboard_key');
     }
 
-
     /**
      * возвращаем таблицу для статичного метода(showAll)
      * @return string
@@ -64,12 +63,19 @@ class DashboardModel extends Model{
         return $this->table;
     }
 
-
     /**
      * возвращаем таблицу для статичного метода(makeReception)
      * @return string
      */
     public function query_for_reception(){
         return $this->table_for_reception;
+    }
+
+    /**
+     * @param $args
+     */
+    public function store($args)
+    {
+        return $this->storeToTable($this->table, $args);
     }
 }

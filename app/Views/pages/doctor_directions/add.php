@@ -4,7 +4,7 @@
     <h1>Добавление категорий врачей</h1>
 
     <div class="add-link">
-    <a href='/doctor_directions/add'>Добавить категорию врача</a>
+        <a href='/doctor_directions/add'>Добавить категорию врача</a>
     </div>
 
     <div class="dashboard-form">

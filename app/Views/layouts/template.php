@@ -1,7 +1,7 @@
 <div class="block-left">
     <div class="logo">
         <a href="/">
-            <img src="images/logo.png" alt="logo">
+            <img src="/images/logo.png" alt="logo">
         </a>
     </div>
 

@@ -6,25 +6,25 @@
                 <table>
                     <thead>
                     <tr>
+                        <th>Номер</th>
                         <th>Клиент</th>
                         <th>Лечащий врач</th>
                         <th>Время</th>
-                        <th>Номер</th>
+                        <th>Цена</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    foreach ($dashboard as $key => $value){
-                        echo '<tr>' . '<th>' . $value->name . ' ' . $value->surname . '</th>'
-                            . '<th>' . 'Врач'
-                            . '<th>' . $value->time_of_visit . '</th>'
-                            . '<th>' . $value->client_id .'</th>' . '</tr>';
-                    }
-                    ?>
+                        <?php
+                            foreach ($dashboard as $key => $value){
+                                echo '<tr>' . '<th>' . $value->name . ' ' . $value->surname . '</th>'
+                                    . '<th>' . 'Врач'
+                                    . '<th>' . $value->time_of_visit . '</th>'
+                                    . '<th>' . $value->client_id .'</th>' . '</tr>';
+                            }
+                        ?>
                     </tbody>
                 </table>
-
-                <a class="button-primary" href="/home/reception">Записать на прием</a>
+                <a class="button-primary" href="/home/add">Записать на прием</a>
             </div>
         </div>
     </div>

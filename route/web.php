@@ -18,7 +18,8 @@ $router = new Router();
 */
 $router->add('', ['controller' => 'AccountController', 'action' => 'show']);
 $router->add('home', ['controller' => 'DashboardController', 'action' => 'show']);
-$router->add('home/reception', ['controller' => 'DashboardController', 'action' => 'reception']);
+$router->add('home/add', ['controller' => 'DashboardController', 'action' => 'reception']);
+$router->add('home/store', ['controller' => 'DashboardController', 'action' => 'store']);
 
 /*
 --------------------------------------------------------------------------

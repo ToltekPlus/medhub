@@ -28,7 +28,7 @@ class DoctorDirectionModel extends Model {
             'foreign_key' => 'user_id'
         ];
 
-          $params2 = [
+        $params2 = [
             'table' => 'directions_category',
             'foreign_key' => 'direction_id'
         ];

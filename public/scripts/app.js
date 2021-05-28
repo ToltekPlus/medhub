@@ -81,11 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         html: operation[0].message,
                     });
 
-                    console.log(response)
+                    console.log(response);
 
                     form.reset(); // очищаем поля формы
                 })
-                .catch((err) => console.error(err))
+                .catch((err) => console.error(err));
 
 
             function redirect() {

@@ -32,7 +32,6 @@ class CategoryController extends Controller
      */
     public function store()
     {
-
         $args = [
             'name_category' => $_POST['name_category'],
             'created_at' => date('Y-m-d H:i:s', time()),
