@@ -25,7 +25,6 @@ class DashboardController extends Controller {
      */
     public function reception()
     {
-        //$dashboard = DashboardModel::makeReception();
         $doctor_directions = new DoctorDirectionModel();
         $doctor_directions_list = $doctor_directions->getAll();
 
@@ -56,11 +55,27 @@ class DashboardController extends Controller {
             'doctor_direction_id' => $_POST['doctor_direction_id'],
             'client_id' => $_POST['client_id'],
             'comment' => $_POST['comment'],
+            'time_of_visit' => $_POST['time_of_visit'],
             //'urgency' => filter_var ($urgency, FILTER_VALIDATE_BOOLEAN)
             'urgency' => $urgency
         ];
 
         $dashboard = new DashboardModel();
         $dashboard->store($args);
+    }
+
+    /**
+     * Клиент посетил доктора
+     */
+    public function checked()
+    {
+        $args = [
+            'checked' => 1
+        ];
+
+        $application = new DashboardModel();
+        $application->update($_GET['id'], $args);
+
+        header('Location: /');
     }
 }
