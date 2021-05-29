@@ -17,7 +17,7 @@
                     <div class="invite">
                         Войдите в аккаунт или <a href="/register">зарегистрируйтесь</a>
                     </div>
-
+Test
                     <form action="/home" class="auth">
                         <fieldset>
                             <label for="email">E-mail</label>
