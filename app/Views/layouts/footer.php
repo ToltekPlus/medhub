@@ -1,4 +1,4 @@
         </div>
-        <script src=<? echo "/scripts/app.js";?>></script>
+        <script src=<?="/scripts/min.js";?>></script>
     </body>
 </html>

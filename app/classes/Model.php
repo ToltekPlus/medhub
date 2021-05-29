@@ -102,10 +102,46 @@ abstract class Model {
           }
           $where .= ' GROUP BY ' . $table. '.' . $group_key;
         }
-        $sql = "SELECT *, " . $table . ".id AS " . $table_key . " FROM " . $selected_tables . $where;
+
+        if(strlen(str_replace(' ', '', $table_key)))
+        $table_as = ' AS ' . $table_key;
+        else
+        $table_as = ' ';
+
+        $sql = "SELECT *, " . $table . ".id" . $table_as . " FROM " . $selected_tables . $where;
 
         return $sql;
     }
+
+    /**
+     * @param $id
+     * @param $table
+     * @param $params
+     * @return string
+     */
+    public function sctucturefindById($id, $table, $params)
+    {
+        $where = '';
+        $selected_tables = $table;
+        $count = count($params);
+
+        if ($count > 0) {
+          $where = ' WHERE ';
+          $where .= $table . '.id = ' . $id . ' AND ';
+          foreach ($params as $key => $value) {
+            $selected_tables = $selected_tables . ', ' . $value['table'];
+            if ($key == $count-1) {
+              $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table']. '.id ';
+            }else {
+              $where .=  $table . '.' . $value['foreign_key'] . '=' . $value['table']. '.id AND ';
+            }
+          }
+        }
+        $sql = "SELECT *, " . $table . ".id " . " FROM " . $selected_tables . $where;
+
+        return $sql;
+    }
+
 
     /**
      * Поиск по id
@@ -281,5 +317,15 @@ abstract class Model {
         $sql = "SELECT *, " . $table . ".id AS " . $table_key . " FROM " . $selected_tables . $where;
 
         return $sql;
+    }
+
+
+    /**
+     * Берем последний вставленный id
+     * @return mixed
+     */
+    public function getLastId()
+    {
+        return $this->db->lastId();
     }
 }
