@@ -70,19 +70,24 @@ nav ul {
     font-size: 0.75em;
     text-transform: none;
     letter-spacing: 0;
+    cursor: pointer;
 }
-.auth {
+.auth,
+.reg {
     margin: 15px 0;
 }
-.auth label {
+.auth label,
+.reg label {
     font-size: 0.6em;
     font-weight: 100;
 }
-.auth input {
+.auth input,
+.reg input {
     border: 1px solid darkgray;
     font-size: 0.6em;
 }
-.auth input[type="submit"] {
+.auth input[type="submit"],
+.reg input[type="submit"] {
     background-color: #e1e1fd;
     border: 1px solid #d9d9f5;
     color: rgba(0, 0, 0, 0.51);
@@ -134,7 +139,12 @@ nav ul {
 }
 .account-level {
     margin: 5px 0 0 0;
-    font-weight: 300;
+    font-weight: 900;
+}
+.form-action {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
 }
 
 
@@ -164,13 +174,7 @@ nav ul {
 .form-control_edit {
     width: 24px;
 }
-.button-primary{
-    border-radius: 5px;
-    color: black;
-    background-color: #606c76;
-    max-width: 100px;
-    max-height: 50px;
-}
+.button-primary,
 .btn-delete {
     background-color: #e1e1fd;
     border: 1px solid #d9d9f5;
@@ -192,6 +196,9 @@ h3 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
+
+.none{
+  display:none !important;
 .content{
     max-width: 50%;
     background-color: white;
@@ -224,10 +231,4 @@ h3 {
     100% {
         transform: scale(1);
     }
-}
-
-.receipt{
-    border-radius: 5px;
-    width: 70%;
-    background-color: orange;
 }

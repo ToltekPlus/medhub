@@ -31,16 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             'page': 'add',
             'action': 'store',
+            'redirect': '',
             'message': 'Данные добавлены'
         },
         {
             'page': 'edit',
             'action': 'update',
+            'redirect': '',
             'message': 'Данные обновлены'
         },
         {
             'page': 'warning',
             'action': 'delete',
+            'redirect': '../home',
             'message': 'Данные удалены'
         }
     ];
@@ -78,11 +81,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         html: operation[0].message,
                     });
 
-                    console.log(response)
+                    console.log(response);
 
                     form.reset(); // очищаем поля формы
                 })
-                .catch((err) => console.error(err))
+                .catch((err) => console.error(err));
+
+
+            function redirect() {
+                if(operation[0]['redirect']){
+                            location = operation[0]['redirect'];
+                }
+            }
+
+            setTimeout(redirect, 1000);
         });
     });
 });
