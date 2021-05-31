@@ -1,24 +1,64 @@
 <?php \Core\View::renderHeader(); ?>
-<?php
+<div class="block-right">
+            <div class="receipt">
+                <img src="/images/logo.png">
+                <h1>
+                    Ваш цифровой чек
+                </h1>
+                <div class="receipt-content">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Организация</th>
+                            <th>ООО "Врачеватель"</th>
+                        </tr>
+                        <tr>
+                            <th>Номер чека:</th>
+                            <th><?php
+                                echo $dashboard['dashboard']['id']
+                                ?></th>
+                        </tr>
+                        <tr>
+                            <th>Номер клиента:</th>
+                            <th><?php
+                                echo $dashboard['dashboard']['client_id']
+                                ?></th>
+                        </tr>
+                        <tr>
+                            <th>Операция:</th>
+                            <th><?php
+                                echo $dashboard['direction']->name_direction
+                                ?></th>
+                        </tr>
 
-#номер клиента операция сумма время посещения постил или нет
+                        <tr>
+                            <th>Время:</th>
+                            <th><?php
+                                echo $dashboard['dashboard']['time_of_visit']
+                                ?></th>
+                        </tr>
+                        <tr>
+                            <th>Посетил:</th>
+                            <th><?php
+                                if ($dashboard['dashboard']['checked'] == '1') {
+                                echo 'да';
+                                } else {
+                                echo 'нет';
+                                }
+                                ?></th>
+                        </tr>
+                        <tr>
+                            <th>Сумма:</th>
+                            <th><?php
+                                echo $dashboard['direction']->price
+                                ?></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <h2>Спасибо!</h2>
+    </div>
+</div>
 
-#var_dump($dashboard);
 
-echo 'Номер чека:' . $dashboard['dashboard']['id'];
-echo '<br>';
-echo 'Номер Клиент:' . $dashboard['dashboard']['client_id'];
-echo '<br>';
-echo 'Операция:' . $dashboard['direction']->name_direction;
-echo '<br>';
-echo 'Сумма:' . $dashboard['direction']->price;
-echo '<br>';
-echo 'Время:' . $dashboard['dashboard']['time_of_visit'];
-echo '<br>';
-if ($dashboard['dashboard']['checked'] == '1') {
-    echo 'Посетил: да';
-} else {
-    echo 'Посетил: нет';
-}
-?>
 <?php \Core\View::renderFooter(); ?>

@@ -100,6 +100,30 @@ nav ul {
 Стили для использования в аккаунте
 --------------------------------------------------------------------------
 */
+.receipt{
+    display: block;
+    margin-left: 28%;
+    margin-top: 25px;
+    max-width: 35%;
+    background-color: white;
+    box-shadow: 2px 0 8px 0 rgb(0 0 0 / 10%);
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 0.75em;
+}
+.receipt h2{
+    margin-left: 35%;
+    font-size: 40px;
+    font-family: Arial;
+}
+.receipt img{
+    margin-left:40%;
+    width: 100px;
+    margin-bottom: 5px;
+}
+.receipt h1{
+    margin-left: 5%;
+}
 .main {
     width: 100%;
     position: relative;
